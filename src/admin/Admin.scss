@@ -1,0 +1,14 @@
+.admin-container {
+  display: flex;
+  .list-item {
+    display: flex;
+    justify-content: space-between;
+    .list-item__buttons {
+      display: flex;
+      flex-direction: column;
+    }
+    .list-item__button {
+      margin: 5px 0 5px 0;
+    }
+  }
+}

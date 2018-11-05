@@ -1,0 +1,13 @@
+.week-schedule-container {
+  display: flex;
+  .week-schedule-container__summary{
+    display: flex;
+    flex-direction: column;
+  }
+}
+.header--clickable {
+  cursor: pointer;
+  &:hover {
+    color: green;
+  }
+}

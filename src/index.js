@@ -2,8 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import Modal from 'react-modal';
 import * as serviceWorker from './serviceWorker';
 
+Modal.setAppElement(document.getElementById('root'));
 ReactDOM.render(<App />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change

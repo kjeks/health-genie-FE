@@ -1,28 +1,34 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import {createStore, applyMiddleware} from 'redux';
+import thunk from 'redux-thunk';
+
+import 'react-datepicker/dist/react-datepicker.css';
+import './Main.scss';
+import {Map} from 'immutable';
+import Menu from './menu/Container';
+import {Provider} from 'react-redux'
+import MainStore from './reducers/MainStore';
+import MainRouter from './MainRouter';
+import ActionLogger from "./middleware/ActionLogger";
+import ReduxToastr from 'react-redux-toastr';
+
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
-}
+    render() {
+        const initialState = Map();
+        const store = createStore((MainStore), initialState, applyMiddleware(thunk, ActionLogger));
 
+        return (
+            <Provider store={store}>
+                <div className="App">
+                    <Menu/>
+                    <ReduxToastr/>
+                    <div className={"content"}>
+                        <MainRouter/>
+                    </div>
+                </div>
+            </Provider>
+        );
+    }
+}
 export default App;

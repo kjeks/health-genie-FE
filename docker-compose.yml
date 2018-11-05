@@ -1,0 +1,19 @@
+version: "3"
+services:
+  client:
+    container_name: health_client
+    image: kjeks/health_client
+    ports:
+      - "3000:3000"
+  server:
+    container_name: health_server
+    image: kjeks/health_server
+    ports:
+      - "3001:3001"
+    depends_on:
+      - client
+    environment:
+      - MONGOLAB_URI=mongodb://Kjeks:Hdhogsgovoskk7rr@ds123513.mlab.com:23513/health
+      - JWT_SECRET="my secret"
+      - SENDGRID_USERNAME=Kjeks
+      - SENDGRID_PASSWORD=Hdhogsgovoskk7rr

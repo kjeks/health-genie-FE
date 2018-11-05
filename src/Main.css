@@ -1,0 +1,118 @@
+.week-schedule-container {
+  display: flex; }
+  .week-schedule-container .week-schedule-container__summary {
+    display: flex;
+    flex-direction: column; }
+
+.header--clickable {
+  cursor: pointer; }
+  .header--clickable:hover {
+    color: green; }
+
+.meal-container {
+  display: flex;
+  justify-content: space-evenly; }
+
+.meal-list {
+  width: 30%;
+  display: flex;
+  flex-direction: column; }
+
+.meal-selection:hover {
+  background-color: #61dafb;
+  cursor: pointer; }
+
+.summary {
+  width: 30%; }
+  .summary .nutrition-list {
+    width: 100%; }
+
+.nutrition:nth-child(odd) {
+  background-color: whitesmoke; }
+
+.module-title {
+  font-size: 18px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center; }
+
+.create-meal-container {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center; }
+  .create-meal-container .create-meal-container__content {
+    display: flex; }
+
+.list-item {
+  position: relative; }
+  .list-item .content {
+    flex-direction: column;
+    display: flex;
+    padding: 20px; }
+    .list-item .content .list-item__name {
+      font-weight: bolder;
+      padding-bottom: 5px; }
+  .list-item:nth-child(odd) {
+    background-color: whitesmoke; }
+  .list-item .fa-window-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    cursor: pointer; }
+    .list-item .fa-window-close:hover {
+      color: green; }
+  .list-item .fa-arrow-right {
+    position: absolute;
+    right: 0;
+    top: 20px;
+    cursor: pointer; }
+    .list-item .fa-arrow-right:hover {
+      color: green; }
+
+.selection-list__item:hover {
+  background-color: #61dafb;
+  cursor: pointer; }
+
+.user-container {
+  display: flex;
+  justify-content: space-evenly; }
+  .user-container .card {
+    width: 400px; }
+
+.user-data {
+  display: flex;
+  flex-direction: column; }
+  .user-data .label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+
+.activity-log-container {
+  width: 30%;
+  display: flex;
+  flex-direction: column; }
+
+.user-date-selector .detail {
+  vertical-align: middle !important; }
+.user-date-selector .user-date-selector__calendar {
+  float: right; }
+
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .login-container .card {
+    width: 500px; }
+
+.admin-container {
+  display: flex; }
+  .admin-container .list-item {
+    display: flex;
+    justify-content: space-between; }
+    .admin-container .list-item .list-item__buttons {
+      display: flex;
+      flex-direction: column; }
+    .admin-container .list-item .list-item__button {
+      margin: 5px 0 5px 0; }
+
+/*# sourceMappingURL=Main.css.map */

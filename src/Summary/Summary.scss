@@ -1,0 +1,11 @@
+.summary {
+  width: 30%;
+  .nutrition-list {
+    width: 100%;
+  }
+}
+.nutrition {
+  &:nth-child(odd) {
+    background-color: whitesmoke;
+  }
+}

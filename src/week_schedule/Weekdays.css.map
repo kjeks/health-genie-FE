@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,wBAAyB;EACvB,OAAO,EAAE,IAAI",
+"sources": ["Weekdays.scss"],
+"names": [],
+"file": "Weekdays.css"
+}
