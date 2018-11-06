@@ -12,6 +12,21 @@ const initialState = makeSummaryReducer({
             name: 'protein',
             id: "protein",
             recommended: "120"
+        }),
+        carbs: makeNutrient({
+            name: 'carbs',
+            id: "carbs",
+            recommended: "400"
+        }),
+        fiber: makeNutrient({
+            name: 'fiber',
+            id: 'fiber',
+            recommended: '25'
+        }),
+        fat: makeNutrient({
+            name: 'fat',
+            id: 'fat',
+            recommended: '50'
         })
     })
 });
