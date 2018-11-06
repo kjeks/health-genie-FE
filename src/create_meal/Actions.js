@@ -5,10 +5,10 @@ import {getUrlByListName} from "../common/list/ListUtils";
 import {toastr} from 'react-redux-toastr';
 
 export default {
-    createItem: (name, kcal, type) => {
+    createItem: (name, nutrients, type) => {
         return dispatch => {
             dispatch({type: generateActionType(type, ActionTypes.CREATE_REQUESTED)});
-            makeRequest({url: getUrlByListName(type), method: 'POST', body: {name: name, kcal: kcal}}).then(item => {
+            makeRequest({url: getUrlByListName(type), method: 'POST', body: {name: name, nutrients: nutrients}}).then(item => {
                 dispatch({type: generateActionType(type, ActionTypes.CREATE_SUCCESSFUL)});
                 toastr.success("meal created", `name: ${item.name}`);
             })

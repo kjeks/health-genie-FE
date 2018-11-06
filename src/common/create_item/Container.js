@@ -7,25 +7,31 @@ import Actions from "../../create_meal/Actions";
 class CreateItemContainer extends Component <{}> {
     constructor(props) {
         super(props);
-        this.state = {kcal: 500, name: ""}
+        this.state = {kcal: 500, fat: 0, carbs: 0, fiber: 0, protein: 0, name: ""}
     }
 
-    changeKcal = (event) => {
-        this.setState({kcal: event.target.value})
+    changeValue = (event) => {
+        this.setState({[event.target.name]: event.target.value});
     };
-    changeName = event => {
-        this.setState({name: event.target.value})
-    };
+
     saveItem = () => {
-        this.props.saveItem(this.state.name, this.state.kcal, this.props.type);
+        const nutrients = Object.assign({}, this.state);
+        delete nutrients['name'];
+
+        this.props.saveItem(this.state.name, nutrients, this.props.type);
     };
     render () {
         return (
             <Card>
                 <Header as={'h1'} className={'centered'}>{this.props.title}</Header>
                 <Card className='create-meal-container__content centered'>
-                    <Input label={"meal name"} value={this.state.name} onChange={this.changeName}/>
-                    <Input label={"kcal"} type={'number'} value={this.state.kcal} onChange={this.changeKcal}/>
+                    <Input label={"meal name"} value={this.state.name} name={'name'} onChange={this.changeValue}/>
+                    <Input label={"kcal"} type={'number'} value={this.state.kcal} name={'kcal'} onChange={this.changeValue}/>
+                    <Input label={"fat"} type={'number'} value={this.state.fat} name={'fat'} onChange={this.changeValue}/>
+                    <Input label={"carbs"} type={'number'} value={this.state.carbs} name={'carbs'} onChange={this.changeValue}/>
+                    <Input label={"fiber"} type={'number'} value={this.state.fiber} name={'fiber'} onChange={this.changeValue}/>
+                    <Input label={"protein"} type={'number'} value={this.state.protein} name={'protein'} onChange={this.changeValue}/>
+
                     <Button onClick={this.saveItem}>create</Button>
                 </Card>
             </Card>
@@ -38,7 +44,7 @@ function mapStateToProps (state) {
 }
 function mapDispatchToProps (dispatch) {
     return {
-        saveItem: (name, kcal, type) => {dispatch(Actions.createItem(name, kcal, type))}
+        saveItem: (name, nutrients, type) => {dispatch(Actions.createItem(name, nutrients, type))}
     }
 }
 
