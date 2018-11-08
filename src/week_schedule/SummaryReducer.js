@@ -8,7 +8,11 @@ export default (state = initialState, action) => {
         case ActionTypes.DAYS_DAY_SUMMARY_RECEIVED:
             return state.setIn(['days', action.dayId], makeSummaryDay(action.summary));
         case ActionTypes.DAYS_WEEK_SUMMARY_RECEIVED:
-            return state.set('week', makeSummaryWeek(action.summary));
+            if(action.updatedPlan) {
+                state = state.set('updatedWeek', makeSummaryWeek(action.updatedPlan));
+            }
+            return state.set('initialWeek', makeSummaryWeek(action.initialPlan));
+
         default:
             return state;
     }

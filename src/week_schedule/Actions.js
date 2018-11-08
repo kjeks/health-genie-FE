@@ -4,12 +4,23 @@ import ListActionTypes, {generateActionType} from "../common/ActionTypes";
 import queryString from 'query-string';
 import {getUrlByListName} from "../common/list/ListUtils";
 import {toastr} from 'react-redux-toastr'
+import ListActions from "../common/list/ListActions";
 
 export default {
     onDaySelected: function (day) {
         return dispatch => {
             dispatch({type: generateActionType('WEEK', ListActionTypes.ADD_ITEM), day: day});
         }
+    },
+    onDayPicked: function (id, dayIds) {
+        return dispatch => {
+            const query = queryString.stringify(dayIds);
+            makeRequest({url: `days/week/summary/?${query}`}).then(summary => {
+                dispatch({type: ActionTypes.DAYS_WEEK_SUMMARY_RECEIVED, initialPlan: summary.initialPlan, updatedPlan: summary.updatedPlan});
+            });
+            dispatch({type: generateActionType("WEEK", ListActionTypes.SELECT_ITEM), itemId: id});
+        }
+
     },
     fetchContent: function (type, contentIds) {
         return dispatch => {
@@ -27,7 +38,11 @@ export default {
     fetchPlansForDays: function () {
         return dispatch => {
             makeRequest({url: `days/plans`}).then(days => {
-                dispatch({type: ActionTypes.DAYS_WEEK_PLANS_RECEIVED, days: days})
+                dispatch({type: ActionTypes.DAYS_WEEK_PLANS_RECEIVED, days: days});
+            }).then(()=> {
+                makeRequest({url: `days/week/summary/`}).then(summary => {
+                    dispatch({type: ActionTypes.DAYS_WEEK_SUMMARY_RECEIVED, initialPlan: summary.initialPlan});
+                });
             })
         }
     },

@@ -5,7 +5,7 @@ import {Header, Grid} from 'semantic-ui-react';
 import Modal from 'react-modal';
 import ListSelection from "../../common/list/components/ListSelection";
 import ListActions from "../../common/list/ListActions";
-import {dayPlanIdSelector, dayPlanSelector} from "../Selectors";
+import {dayIdsInWeekSelector, dayPlanIdSelector, dayPlanSelector} from "../Selectors";
 import DayContentList from './DayContentList';
 import Actions from "../Actions";
 import DaySummary from "./DaySummary";
@@ -28,7 +28,19 @@ class Weekday extends Component<{
         this.setState({summaryExpanded: !this.state.summaryExpanded});
     };
     handleSelectItem = (id) => {
-        this.props.onItemSelected(id);
+        console.log(this.props.dayReducer, id);
+        //this.props.onItemSelected(id, this.props.dayIds, this.props.currentSelectedDay);
+        const days = this.props.dayReducer.set(this.props.dayReducer.currentSelectedDay, id);
+        const dayIds = [
+            days.monday,
+            days.tuesday,
+            days.wednesday,
+            days.thursday,
+            days.friday,
+            days.saturday,
+            days.sunday
+        ];
+        this.props.onItemSelected(id, dayIds)
     };
     handlePlanClicked = () => {
         this.props.onDaySelected(this.props.day);
@@ -76,12 +88,15 @@ function mapStateToProps (state, ownProps) {
         itemSelectionOpen: state.getIn(['WEEK', 'itemSelectionOpen']),
         itemList: state.getIn(['WEEK', 'itemList']),
         dayPlanId: dayPlanIdSelector(state, ownProps),
-        dayPlan: dayPlanSelector(state, ownProps)
+        dayPlan: dayPlanSelector(state, ownProps),
+        dayIds: dayIdsInWeekSelector(state),
+        dayReducer: state.get('DAYS'),
+        currentSelectedDay: state.getIn(['DAYS', 'currentSelectedDay'])
     }
 }
 function mapDispatchToProps (dispatch) {
     return {
-        onItemSelected: (id)=> dispatch(ListActions.onItemSelected(id, 'WEEK')),
+        onItemSelected: (id, dayIds) => dispatch(Actions.onDayPicked(id, dayIds)),
         onDaySelected: (day) => dispatch(Actions.onDaySelected(day))
     }
 }

@@ -4,6 +4,10 @@ import {itemListSelector} from "../common/Selectors";
 import {getUrlByListName} from "../common/list/ListUtils";
 import {makeSelectorWeekSummary} from "./FlowTypes";
 
+export const dayReducerSelector = (state) => {
+    return state.get('DAYS');
+};
+
 export const dayPlanIdSelector = (state, props) => {
     return state.getIn(['DAYS', props.day])
 };
@@ -13,8 +17,11 @@ export const dayPlansSelector = (state) => {
 export const summaryDaysSelector = (state) => {
     return state.getIn(['SummaryDayReducer', 'days']);
 };
-export const weekSelector = (state) => {
-    return state.getIn(['SummaryDayReducer', 'week']);
+export const initialWeekSelector = (state) => {
+    return state.getIn(['SummaryDayReducer', 'initialWeek']);
+};
+export const updatedWeekSelector = (state) => {
+    return state.getIn(['SummaryDayReducer', 'updatedWeek']);
 };
 
 export const dayPlanSelector =  createSelector(
@@ -50,9 +57,43 @@ export const daySummarySelector = createSelector(
         return days.get(dayPlanId)
     }
 );
-export const weekSummarySelector = createSelector(
-    weekSelector,
+export const dayIdsInWeekSelector = createSelector(
+    dayReducerSelector,
+    (dayReducer) => {
+        return List([
+            dayReducer.monday,
+            dayReducer.tuesday,
+            dayReducer.wednesday,
+            dayReducer.thursday,
+            dayReducer.friday,
+            dayReducer.saturday,
+            dayReducer.sunday
+        ]).filter(id => {
+            return !!id
+        });
+    }
+)
+export const initialWeekSummarySelector = createSelector(
+    initialWeekSelector,
     (week) => {
+        const difference = week.kcalEaten - (week.baseCaloriesUsed + week.kcalUsedFromExercise);
+
+        return makeSelectorWeekSummary({
+            baseCaloriesUsed: week.baseCaloriesUsed,
+            kcalUsedFromExercise: week.kcalUsedFromExercise,
+            allCaloriesUsed: week.baseCaloriesUsed + week.kcalUsedFromExercise,
+            kcalEaten: week.kcalEaten,
+            difference: difference,
+            weightChange: difference / 7000
+        })
+    }
+);
+export const updatedWeekSummarySelector = createSelector(
+    updatedWeekSelector,
+    (week) => {
+        if(!week) {
+            return null;
+        }
         const difference = week.kcalEaten - (week.baseCaloriesUsed + week.kcalUsedFromExercise);
 
         return makeSelectorWeekSummary({

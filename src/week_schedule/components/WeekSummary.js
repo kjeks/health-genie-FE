@@ -4,14 +4,12 @@ import {connect} from 'react-redux';
 import {Grid, Header} from 'semantic-ui-react';
 import Actions from "../Actions";
 import ListItem from "../../common/list/components/ListItem";
-import {weekSummarySelector} from "../Selectors";
+import {
+    dayIdsInWeekSelector, dayPlanIdSelector, initialWeekSummarySelector,
+    updatedWeekSummarySelector
+} from "../Selectors";
 
 class WeekSummary extends Component <{}> {
-    constructor(props) {
-        super(props);
-        this.props.fetchWeekSummary()
-    }
-
     render() {
         return (
             <Grid.Column width={4} className='week-schedule-container__summary'>
@@ -23,8 +21,16 @@ class WeekSummary extends Component <{}> {
                     </Grid.Row>
                     <Grid.Column>
                         <ListItem
-                            values={this.props.weekSummary}
+                            values={this.props.initialWeekSummary}
                         />
+                        {this.props.updatedWeekSummary &&
+                        <span>
+                         <Header as='h3'>Updated Summary</Header>
+                            <ListItem
+                                values={this.props.updatedWeekSummary}
+                            />
+                        </span>}
+
                     </Grid.Column>
                 </Grid>
             </Grid.Column>
@@ -35,7 +41,8 @@ class WeekSummary extends Component <{}> {
 function mapStateToProps(state) {
     return {
         week: state.getIn(['SummaryDayReducer', 'week']),
-        weekSummary: weekSummarySelector(state)
+        initialWeekSummary: initialWeekSummarySelector(state),
+        updatedWeekSummary: updatedWeekSummarySelector(state)
     }
 }
 function mapDispatchToProps(dispatch) {

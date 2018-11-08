@@ -56,12 +56,13 @@ export const makeSelectorWeekSummary = Record({
     kcalEaten: null,
     difference: null,
     weightChange: null
-})
+});
 
 export type SummaryReducerType = {
     days: Map<string, RecordOf<SummaryDayType>>
 }
 export const makeSummaryReducer = Record({
     days: Map(),
-    week: makeSummaryWeek()
+    updatedWeek: null,
+    initialWeek: makeSummaryWeek()
 });
