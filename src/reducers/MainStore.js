@@ -9,6 +9,7 @@ import FinalHoR from "../common/list/reducer/FinalHoR";
 import SelectItemHoR from '../common/list/reducer/SelectItemHoR';
 import WeekReducer from '../week_schedule/Reducer'
 import SummaryDayReducer from '../week_schedule/SummaryReducer';
+import NewDayReducer from "../meal/NewDayReducer";
 
 export default combineReducers({
     MEAL: (ListReducer)('MEAL')([ChangeRemoveHoR, SelectItemHoR, FinalHoR]),
@@ -20,5 +21,6 @@ export default combineReducers({
     SummaryReducer: SummaryReducer,
     UserReducer: UserReducer,
     AuthenticationReducer: AuthenticationReducer,
+    NewDayReducer: NewDayReducer,
     toastr: toastrReducer
 })
