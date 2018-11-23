@@ -15,7 +15,6 @@ export const mealPlanNutrients = createSelector(
         let fat = 0;
         let carbs = 0;
         let fiber = 0;
-
         mealList.forEach((meal) => {
             protein = protein + (meal && meal.get('protein'));
             kcal = kcal + (meal.get('kcal') && Number(meal.get('kcal')));

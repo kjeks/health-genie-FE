@@ -6,6 +6,7 @@ import type {MealPlanNutrientType, NutrientType} from "../../Summary/FlowTypes";
 import NutritionList from "./NutritionList";
 import {Header, Button, Input} from 'semantic-ui-react';
 import Actions from "../../user/Actions";
+import {idAndQuantitySelector} from "../Selectors";
 
 class Summary extends PureComponent <{
     nutrients: Map<RecordOf<NutrientType>>,
@@ -21,7 +22,7 @@ class Summary extends PureComponent <{
         this.setState({dayName: data.value});
     };
     handleDaySaved = () => {
-        this.props.saveDay(this.props.mealIds, this.props.activityIds, this.state.dayName);
+        this.props.saveDay(this.props.mealQuantities, this.props.activityQuantities, this.state.dayName);
     };
 
     render() {
@@ -46,13 +47,15 @@ function mapStateToProps(state, ownProps) {
         nutrientsInMeal: mealPlanNutrients(state, ownProps),
         nutrients: state.get('SummaryReducer').nutrients,
         mealIds: state.getIn(['MEAL', 'selectedItemIds']),
+        mealQuantities: idAndQuantitySelector(state, 'MEAL'),
+        activityQuantities: idAndQuantitySelector(state, 'ACTIVITY'),
         activityIds: state.getIn(['ACTIVITY', 'selectedItemIds'])
     }
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        saveDay: (mealIds, activityIds, dayName) => dispatch(Actions.onDaySaved(mealIds, activityIds, dayName))
+        saveDay: (meals, activities, dayName) => dispatch(Actions.onDaySaved(meals, activities, dayName))
     }
 }
 

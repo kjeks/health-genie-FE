@@ -4,6 +4,7 @@ import ButtonedList from '../../common/ButtonedList';
 import ListFetchHoC from "../../common/HOC/ListFetchHoC";
 import Summary from "../../common/components/Summary";
 import OfficialMealList from "./OfficialMealList";
+import ActivityList from './ActivityList';
 import AddSaveButtonWrapper from '../../common/HOC/AddSaveButtonWrapper';
 
 class MealContainer extends PureComponent<{}> {
@@ -19,6 +20,9 @@ class MealContainer extends PureComponent<{}> {
                 {/*<FetchingButtonedList*/}
                     {/*type={'MEAL'}*/}
                 {/*/>*/}
+                <ButtonWrapper type={'ACTIVITY'}>
+                    <OfficialMealList type={'ACTIVITY'}/>
+                </ButtonWrapper>
                 <ButtonWrapper type={'MEAL'}>
                     <OfficialMealList type={'MEAL'}/>
                 </ButtonWrapper>

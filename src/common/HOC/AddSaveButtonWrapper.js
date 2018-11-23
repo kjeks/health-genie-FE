@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import {Button} from 'semantic-ui-react';
 import Actions from "../list/ListActions";
 import {connect} from 'react-redux';
+import {idAndQuantitySelector} from "../Selectors";
 
 
 class ButtonWrapper extends PureComponent {
@@ -9,7 +10,7 @@ class ButtonWrapper extends PureComponent {
         this.props.addItem(this.props.type);
     };
     handleListSaved = () => {
-        this.props.listSaved(this.props.selectedItemIds, this.props.type);
+        this.props.listSaved(this.props.selectedIdsAndQuantities, this.props.type);
     };
     render () {
         return (
@@ -24,6 +25,7 @@ class ButtonWrapper extends PureComponent {
 function mapStateToProps (state, ownProps) {
     return {
         selectedItemIds: state.get(ownProps.type).selectedItemIds,
+        selectedIdsAndQuantities: idAndQuantitySelector(state, ownProps)
     }
 }
 function mapDispatchToProps (dispatch) {

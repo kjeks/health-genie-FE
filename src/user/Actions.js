@@ -21,10 +21,10 @@ export default {
             makeRequest({url: 'users', method: 'POST', body: user})
         }
     },
-    onDaySaved: function (mealIds, activityIds, dayName) {
+    onDaySaved: function (meals, activities, dayName) {
         return dispatch => {
             dispatch({type: ActionTypes.USER_REQUEST_DAY_SAVE});
-            makeRequest({url: 'days/new', method: 'POST', body: {mealIds: mealIds, activityIds: activityIds, dayName: dayName}})
+            makeRequest({url: 'days/new', method: 'POST', body: {meals: meals, activities: activities, dayName: dayName}})
         }
     }
 }

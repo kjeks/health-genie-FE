@@ -7,9 +7,10 @@ import {MealSelector} from "../Selector";
 import Actions from "../Actions";
 
 class OfficialMealItem extends PureComponent {
-    handleGramChange =(event, target) => {
+    handleGramChange = (event, target) => {
         this.props.onGramsChanged(this.props.item.get('_id'), target.value)
     };
+
     render() {
         const meal = this.props.item;
 
@@ -30,7 +31,8 @@ class OfficialMealItem extends PureComponent {
                         }
                     </Grid.Column>
                     <Grid.Column width={12}>
-                        <Input label='select grams' type='number' value={this.props.meal.get('grams')} onChange={this.handleGramChange}/>
+                        <Input label='select grams' type='number' value={this.props.meal.get('grams')}
+                               onChange={this.handleGramChange}/>
                         {meal.get('macros') && <MealMacrosSpesifics
                             macros={meal.get('macros')}
                             grams={this.props.meal.get('grams')}
@@ -42,14 +44,16 @@ class OfficialMealItem extends PureComponent {
         )
     }
 }
+
 function mapStateToProps(state, ownProps) {
     return {
         meal: MealSelector(state, ownProps)
     }
 }
-function mapDispatchToProps (dispatch){
+
+function mapDispatchToProps(dispatch) {
     return {
-        onGramsChanged: (mealId, newValue)=> dispatch(Actions.onGramsChanged(mealId, newValue))
+        onGramsChanged: (mealId, newValue) => dispatch(Actions.onGramsChanged(mealId, newValue))
     }
 }
 
