@@ -21,15 +21,15 @@ export const makeNutrient = Record({
 export type MealPlanNutrientType = {
     protein: number,
     kcal: number,
-    fat: number,
-    carbs: number,
-    fiber: number
+    fett: number,
+    sukker: number,
+    kostfiber: number
 }
 export const makeMealPlanNutrient = Record({
     protein: null,
     kcal: null,
-    fat: null,
-    carbs: null,
-    fiber: null
-})
+    fett: null,
+    sukker: null,
+    kostfiber: null
+});
 

@@ -4,7 +4,7 @@ import Nutrient from "./Nutrition";
 
 export default class NutritionList extends PureComponent <{}> {
     render() {
-        const nutrients = this.props.nutrients.map((nutrient) => {
+        const nutrients = this.props.nutrients.map(nutrient => {
             return <Nutrient
                 name={nutrient.name}
                 planned={this.props.nutrientsInMeal.get(nutrient.id)}

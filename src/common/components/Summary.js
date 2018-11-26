@@ -44,11 +44,11 @@ class Summary extends PureComponent <{
 
 function mapStateToProps(state, ownProps) {
     return {
+        mealQuantities: idAndQuantitySelector(state, 'MEAL'),
+        activityQuantities: idAndQuantitySelector(state, 'ACTIVITY'),
         nutrientsInMeal: mealPlanNutrients(state, ownProps),
         nutrients: state.get('SummaryReducer').nutrients,
         mealIds: state.getIn(['MEAL', 'selectedItemIds']),
-        mealQuantities: idAndQuantitySelector(state, 'MEAL'),
-        activityQuantities: idAndQuantitySelector(state, 'ACTIVITY'),
         activityIds: state.getIn(['ACTIVITY', 'selectedItemIds'])
     }
 }
