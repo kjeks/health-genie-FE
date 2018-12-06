@@ -2,13 +2,13 @@ import React, {PureComponent} from 'react';
 import {connect} from 'react-redux';
 import {Header, Grid, Input} from 'semantic-ui-react';
 import MealMacros from "./MealMacros";
-import MealMacrosSpesifics from "./MealMacrosSpesifics";
+import MealMacrosSpecifics from "./MealMacrosSpecifics";
 import {MealSelector} from "../Selector";
 import Actions from "../Actions";
 
 class OfficialMealItem extends PureComponent {
     handleGramChange = (event, target) => {
-        this.props.onGramsChanged(this.props.item.get('_id'), target.value)
+        this.props.onGramsChange(this.props.item.get('_id'), target.value)
     };
 
     render() {
@@ -33,7 +33,7 @@ class OfficialMealItem extends PureComponent {
                     <Grid.Column width={12}>
                         <Input label='select grams' type='number' value={this.props.meal && this.props.meal.get('grams')}
                                onChange={this.handleGramChange}/>
-                        {this.props.meal && meal.get('macros') && <MealMacrosSpesifics
+                        {this.props.meal && meal.get('macros') && <MealMacrosSpecifics
                             macros={meal.get('macros')}
                             grams={this.props.meal.get('grams')}
                         />
@@ -53,7 +53,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        onGramsChanged: (mealId, newValue) => dispatch(Actions.onGramsChanged(mealId, newValue))
+        onGramsChange: (mealId, newValue) => dispatch(Actions.onGramsChange(mealId, newValue))
     }
 }
 

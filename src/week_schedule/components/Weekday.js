@@ -28,8 +28,6 @@ class Weekday extends Component<{
         this.setState({summaryExpanded: !this.state.summaryExpanded});
     };
     handleSelectItem = (id) => {
-        console.log(this.props.dayReducer, id);
-        //this.props.onItemSelected(id, this.props.dayIds, this.props.currentSelectedDay);
         const days = this.props.dayReducer.set(this.props.dayReducer.currentSelectedDay, id);
         const dayIds = [
             days.monday,
@@ -56,7 +54,7 @@ class Weekday extends Component<{
                     day={this.props.day}
                 />
                 }
-                <Header as='h5' onClick={this.toggleMealExpanded} className={'header--clickable'}>{`Meals`}</Header>
+                <Header as='h5' onClick={this.toggleMealExpanded} className={'header--clickable'}>Meals</Header>
                 {this.state.mealExpanded &&
                 <DayContentList
                     type={'MEAL'}

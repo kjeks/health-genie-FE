@@ -42,13 +42,37 @@ export const contentSelector = createSelector(
     itemListSelector, dayPlanSelector, typeSelector,
     (itemList, dayPlan, type) => {
         const correctType = getUrlByListName(type);
-        const test = dayPlan.get(correctType);
+        const contentItem = dayPlan.get(correctType);
 
-        return test.map(id => {
-            return itemList.get(id);
-        }).filter(item => {
-            return !!item;
-        })
+        if(type === 'MEAL') {
+            return contentItem.map(mealIdAndQuantity => {
+                const mealId = mealIdAndQuantity.get('_id');
+                const meal = itemList.get(mealId);
+
+                return meal && Map({
+                    name: meal.get('name'),
+                    kcal: meal.getIn(['macros', 'kcal']),
+                    quantity: mealIdAndQuantity.get('quantity')
+                })
+
+            }).filter(meal => {
+                return !!meal
+            })
+        }
+        if(type === 'ACTIVITY') {
+            return contentItem.map(activityIdAndDuration => {
+                const activityId = activityIdAndDuration.get('_id');
+                const activity = itemList.get(activityId);
+
+                return activity && Map({
+                    name: activity.get('name'),
+                    duration: activityIdAndDuration.get('quantity')
+                })
+
+            }).filter(meal => {
+                return !!meal
+            })
+        }
     }
 );
 export const daySummarySelector = createSelector(

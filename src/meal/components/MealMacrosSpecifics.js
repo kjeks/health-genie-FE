@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import {List, Label} from 'semantic-ui-react';
 
-export default class MealMacrosSpesifics extends PureComponent {
+export default class MealMacrosSpecifics extends PureComponent {
     render() {
         const macros = this.props.macros.map((value, name) => {
             const calculatedValue = (value* this.props.grams/100).toFixed(2);

@@ -17,5 +17,6 @@ export const makeMealType = Record({
     grams: null
 });
 export const makeActivityType = Record({
-    minutes: null
-})
+    minutes: null,
+    speed: null
+});

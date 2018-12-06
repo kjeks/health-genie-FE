@@ -1,11 +1,12 @@
 import React, {PureComponent} from 'react';
 import {List} from 'semantic-ui-react';
-import MealSelectionItem from "./MealSelectionItem";
 
-export default class MealSelectionModal extends PureComponent {
+export default class SelectionModal extends PureComponent {
     render() {
+        const SelectionItem = this.props.selectionItemType;
+
         const list = this.props.list.map(listItem => {
-            return <MealSelectionItem
+            return <SelectionItem
                 listItem={listItem}
                 onItemSelected={this.props.onItemSelected}
                 key={listItem.get('_id')}

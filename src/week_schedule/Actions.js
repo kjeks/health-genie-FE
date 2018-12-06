@@ -4,7 +4,6 @@ import ListActionTypes, {generateActionType} from "../common/ActionTypes";
 import queryString from 'query-string';
 import {getUrlByListName} from "../common/list/ListUtils";
 import {toastr} from 'react-redux-toastr'
-import ListActions from "../common/list/ListActions";
 
 export default {
     onDaySelected: function (day) {
@@ -24,9 +23,13 @@ export default {
     },
     fetchContent: function (type, contentIds) {
         return dispatch => {
-            const query = queryString.stringify(contentIds.toJS());
+            let objectArray = [];
+            contentIds.forEach(content => {
+                const cont = queryString.stringify(content.toJS());
+                objectArray.push(cont);
+            });
 
-            makeRequest({url: `${getUrlByListName(type)}/ids/?${query}`,}).then(content => {
+            makeRequest({url: `${getUrlByListName(type)}/ids/?${queryString.stringify(objectArray)}`,}).then(content => {
                 dispatch({
                     type: generateActionType(type, ListActionTypes.ITEMS_RECEIVED),
                     selectedItemIds: [],

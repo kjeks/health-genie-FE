@@ -2,7 +2,11 @@
 import React, {PureComponent} from 'react';
 import ListFetchHoC from "../../common/HOC/ListFetchHoC";
 import Summary from "../../common/components/Summary";
-import OfficialMealList from "./OfficialMealList";
+import SelectionList from "./SelectionList";
+import OfficialMealItem from './OfficialMealItem';
+import ActivityItem from './ActivityItem';
+import MealSelectionItem from './MealSelectionItem';
+import ActivitySelectionItem from './ActivitySelectionItem';
 import AddSaveButtonWrapper from '../../common/HOC/AddSaveButtonWrapper';
 
 class MealContainer extends PureComponent<{}> {
@@ -11,10 +15,16 @@ class MealContainer extends PureComponent<{}> {
         return (
             <div className={'meal-container'}>
                 <ButtonWrapper type={'ACTIVITY'}>
-                    <OfficialMealList type={'ACTIVITY'}/>
+                    <SelectionList type={'ACTIVITY'}
+                                   itemComponentType={ActivityItem}
+                                   selectionItemType={ActivitySelectionItem}
+                    />
                 </ButtonWrapper>
                 <ButtonWrapper type={'MEAL'}>
-                    <OfficialMealList type={'MEAL'}/>
+                    <SelectionList type={'MEAL'}
+                                   itemComponentType={OfficialMealItem}
+                                   selectionItemType={MealSelectionItem}
+                    />
                 </ButtonWrapper>
                 <Summary
                     type={'MEAL'}

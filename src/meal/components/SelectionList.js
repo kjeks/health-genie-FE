@@ -1,17 +1,18 @@
 import React, {PureComponent} from 'react';
 import {Header, List} from 'semantic-ui-react';
 import Modal from 'react-modal';
-import OfficialMealItem from "./OfficialMealItem";
 import ListHOC from "../../common/HOC/ListHOC";
-import MealSelectionModal from "./MealSelectionModal";
+import SelectionModal from "./SelectionModal";
 
 class OfficialMealList extends PureComponent {
     handleSelectItem = (id) => {
         this.props.onItemSelected(id, this.props.type)
     };
     render () {
+        const Item = this.props.itemComponentType;
+
         const items =  this.props.selectedItems.map((item, index) => {
-            return item && <OfficialMealItem
+            return item && <Item
                 index={index}
                 id={item.get('_id')}
                 item={item}
@@ -30,9 +31,10 @@ class OfficialMealList extends PureComponent {
                     <Modal
                         isOpen={this.props.itemSelectionOpen !==false}
                     >
-                        <MealSelectionModal
+                        <SelectionModal
                             list={this.props.itemList}
                             onItemSelected={this.handleSelectItem}
+                            selectionItemType={this.props.selectionItemType}
                         />
                     </Modal>
                 </div>
