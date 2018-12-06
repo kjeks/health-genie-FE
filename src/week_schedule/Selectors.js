@@ -51,8 +51,8 @@ export const contentSelector = createSelector(
 
                 return meal && Map({
                     name: meal.get('name'),
-                    kcal: meal.getIn(['macros', 'kcal']),
-                    quantity: mealIdAndQuantity.get('quantity')
+                    grams: mealIdAndQuantity.get('quantity'),
+                    kcal: meal.getIn(['macros', 'kcal']) * mealIdAndQuantity.get('quantity')/100
                 })
 
             }).filter(meal => {
@@ -66,7 +66,8 @@ export const contentSelector = createSelector(
 
                 return activity && Map({
                     name: activity.get('name'),
-                    duration: activityIdAndDuration.get('quantity')
+                    duration: activityIdAndDuration.get('quantity'),
+                    kcal: activity.get('kcal') * activityIdAndDuration.get('quantity')
                 })
 
             }).filter(meal => {

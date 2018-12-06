@@ -31,11 +31,11 @@ class OfficialMealItem extends PureComponent {
                         }
                     </Grid.Column>
                     <Grid.Column width={12}>
-                        <Input label='select grams' type='number' value={this.props.meal && this.props.meal.get('grams')}
+                        <Input label='select grams' type='number' value={this.props.meal && this.props.meal.get('quantity')}
                                onChange={this.handleGramChange}/>
                         {this.props.meal && meal.get('macros') && <MealMacrosSpecifics
                             macros={meal.get('macros')}
-                            grams={this.props.meal.get('grams')}
+                            grams={this.props.meal.get('quantity')}
                         />
                         }
                     </Grid.Column>

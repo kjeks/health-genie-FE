@@ -15,7 +15,6 @@ class ActivityItem extends PureComponent <{}>{
 
     render() {
         const activityItem = this.props.item;
-
         return (
             <Grid columns={2} celled>
                 <Grid.Row>
@@ -31,10 +30,10 @@ class ActivityItem extends PureComponent <{}>{
                         <div>{`kcal ${activityItem.get('kcal')}`}</div>
                     </Grid.Column>
                     <Grid.Column width={12}>
-                        <Input label={'select duration'} type={'number'} value={this.props.activity && this.props.activity.get('minutes')} onChange={this.onDurationChange}/>
+                        <Input label={'select duration'} type={'number'} value={this.props.activity && this.props.activity.get('quantity')} onChange={this.onDurationChange}/>
                         <Input label={'select speed'} type={'number'} value={this.props.activity && this.props.activity.get('speed')} onChange={this.onSpeedChange}/>
                         {this.props.activity && <ActivitySpecifics
-                            kcalBurned={this.props.activity.get('minutes') * activityItem.get('kcal')}
+                            kcalBurned={this.props.activity.get('quantity') * activityItem.get('kcal')}
                         />}
                     </Grid.Column>
                 </Grid.Row>

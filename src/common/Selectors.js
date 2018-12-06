@@ -27,7 +27,7 @@ export const idAndQuantitySelector = createSelector(
     selectedItemIdsSelector, quantitySelector,
     (selectedItemIds, quantity) => {
         return selectedItemIds.map(id => {
-            const quant = quantity &&  quantity.getIn([id, 'grams']);
+            const quant = quantity &&  quantity.getIn([id, 'quantity']);
             return [id, quant];
         });
     }
