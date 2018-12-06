@@ -7,6 +7,7 @@ import NutritionList from "./NutritionList";
 import {Header, Button, Input} from 'semantic-ui-react';
 import Actions from "../../user/Actions";
 import {idAndQuantitySelector} from "../Selectors";
+import {dailyCalSelector} from "../../user/Selector";
 
 class Summary extends PureComponent <{
     nutrients: Map<RecordOf<NutrientType>>,
@@ -15,6 +16,7 @@ class Summary extends PureComponent <{
 }> {
     constructor(props) {
         super(props);
+        this.props.fetchUser();
         this.state = {dayName: ""}
     }
 
@@ -26,6 +28,7 @@ class Summary extends PureComponent <{
     };
 
     render() {
+        console.log(this.props.kcalGoal);
         return (
             <div>
                 <Header as='h1' className={'centered'}>Summary</Header>
@@ -33,6 +36,8 @@ class Summary extends PureComponent <{
                     nutrients={this.props.nutrients}
                     nutrientsInMeal={this.props.nutrientsInMeal}
                     tableHeaders={this.props.tableHeaders}
+                    mealQuantities={this.props.mealQuantities}
+                    kcalGoal={this.props.kcalGoal}
                 />
 
                 <Input label={'day name'} onChange={this.handleDayNameChange}/>
@@ -47,6 +52,7 @@ function mapStateToProps(state, ownProps) {
         mealQuantities: idAndQuantitySelector(state, 'MEAL'),
         activityQuantities: idAndQuantitySelector(state, 'ACTIVITY'),
         nutrientsInMeal: mealPlanNutrients(state, ownProps),
+        kcalGoal: dailyCalSelector(state),
         nutrients: state.get('SummaryReducer').nutrients,
         mealIds: state.getIn(['MEAL', 'selectedItemIds']),
         activityIds: state.getIn(['ACTIVITY', 'selectedItemIds'])
@@ -55,7 +61,8 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        saveDay: (meals, activities, dayName) => dispatch(Actions.onDaySaved(meals, activities, dayName))
+        saveDay: (meals, activities, dayName) => dispatch(Actions.onDaySaved(meals, activities, dayName)),
+        fetchUser: () => dispatch(Actions.fetchUser())
     }
 }
 

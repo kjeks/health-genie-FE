@@ -7,10 +7,10 @@ export const itemListSelector = (state, props) => {
 const selectedItemIdsSelector = (state, props) => {
     return state.get(props.type || props).selectedItemIds;
 };
-const quantitySelector = (state, type) => {
+const quantitySelector = (state, props) => {
     return state.getIn([
         'NewDayReducer',
-        getUrlByListName(type)
+        getUrlByListName(props.type)
     ])
 };
 

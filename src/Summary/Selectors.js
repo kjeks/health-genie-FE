@@ -17,12 +17,14 @@ export const mealPlanNutrients = createSelector(
         let fiber = 0;
         mealList.forEach(meal => {
             const macros = meal.get('macros');
+            const mealId = meal.get('_id');
+            const quantity = findQuantity(mealId, idAndQuantity);
 
-            protein = protein + (macros && macros.get('protein'));
-            kcal = kcal + (macros.get('kcal') && Number(macros.get('kcal')));
-            fett = fett + (macros.get('fett') && Number(macros.get('fett')));
-            sukker = sukker + (macros.get('sukker') && Number(macros.get('sukker')));
-            fiber = fiber + (macros.get('kostfiber') && Number(macros.get('kostfiber')));
+            protein = protein + ((macros && macros.get('protein')) * quantity/100);
+            kcal = kcal + ((macros.get('kcal') && Number(macros.get('kcal'))) * quantity/100);
+            fett = fett + ((macros.get('fett') && Number(macros.get('fett')))* quantity/100);
+            sukker = sukker + ((macros.get('sukker') && Number(macros.get('sukker')))* quantity/100);
+            fiber = fiber + ((macros.get('kostfiber') && Number(macros.get('kostfiber'))* quantity/100));
 
         });
         return makeMealPlanNutrient({
@@ -35,3 +37,10 @@ export const mealPlanNutrients = createSelector(
 
     }
 );
+function findQuantity(mealId, idAndQuantity) {
+    for(let [id, quantity] of idAndQuantity) {
+        if(id === mealId) {
+            return quantity;
+        }
+    }
+}
