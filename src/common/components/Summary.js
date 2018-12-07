@@ -28,7 +28,6 @@ class Summary extends PureComponent <{
     };
 
     render() {
-        console.log(this.props.kcalGoal);
         return (
             <div>
                 <Header as='h1' className={'centered'}>Summary</Header>
@@ -49,8 +48,8 @@ class Summary extends PureComponent <{
 
 function mapStateToProps(state, ownProps) {
     return {
-        mealQuantities: idAndQuantitySelector(state, 'MEAL'),
-        activityQuantities: idAndQuantitySelector(state, 'ACTIVITY'),
+        mealQuantities: idAndQuantitySelector(state, {type: 'MEAL'}),
+        activityQuantities: idAndQuantitySelector(state, {type: 'ACTIVITY'}),
         nutrientsInMeal: mealPlanNutrients(state, ownProps),
         kcalGoal: dailyCalSelector(state),
         nutrients: state.get('SummaryReducer').nutrients,
