@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import ListHOC from "../../common/HOC/ListHOC";
 import SelectionModal from "./SelectionModal";
 
-class OfficialMealList extends Component {
+class SelectionList extends Component {
     constructor(props) {
         super(props);
         this.state={selectedList: 'favorites'}
@@ -31,6 +31,7 @@ class OfficialMealList extends Component {
                 isFavorite={isFavorite}
                 onItemRemove={this.props.onItemRemove}
                 onItemChange={this.props.onItemChange}
+                type={this.props.type}
             />
         });
         const selectionModalList = this.state.selectedList === 'favorites' ? this.props.favoriteList : this.props.itemList;
@@ -67,4 +68,4 @@ class OfficialMealList extends Component {
     }
 }
 
-export default ListHOC(OfficialMealList);
+export default ListHOC(SelectionList);

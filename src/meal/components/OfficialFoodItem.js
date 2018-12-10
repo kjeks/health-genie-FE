@@ -3,11 +3,11 @@ import {connect} from 'react-redux';
 import {Header, Grid, Input} from 'semantic-ui-react';
 import MealMacros from "./MealMacros";
 import MealMacrosSpecifics from "./MealMacrosSpecifics";
-import {MealSelector} from "../Selector";
+import {FoodSelector} from "../Selector";
 import Actions from "../Actions";
 import cx from 'classnames';
 
-class OfficialMealItem extends PureComponent {
+class OfficialFoodItem extends PureComponent {
     handleGramChange = (event, target) => {
         this.props.onGramsChange(this.props.item.get('_id'), target.value)
     };
@@ -15,14 +15,14 @@ class OfficialMealItem extends PureComponent {
         this.props.onMealFavoriteToggle(this.props.item.get('_id'));
     };
     render() {
-        const meal = this.props.item;
+        const food = this.props.item;
 
         return (
             <Grid columns={2} celled>
                 <Grid.Row>
                     <Grid.Column width={16} textAlign={'center'}>
                         <Header as={'h3'}>
-                            {meal.get('name')}
+                            {food.get('name')}
                             <i className={cx('fas fa-star', {selected: this.props.isFavorite})} onClick={this.handleFavoriteClick}/>
                         </Header>
                     </Grid.Column>
@@ -32,17 +32,17 @@ class OfficialMealItem extends PureComponent {
                         <Header as={'h4'} textAlign={'center'}>
                             pr 100g
                         </Header>
-                        {meal.get('macros') && <MealMacros
-                            macros={meal.get('macros')}/>
+                        {food.get('macros') && <MealMacros
+                            macros={food.get('macros')}/>
                         }
                     </Grid.Column>
                     <Grid.Column width={12}>
                         <Input label='select grams' type='number'
-                               value={this.props.meal && this.props.meal.get('quantity')}
+                               value={this.props.food && this.props.food.get('quantity')}
                                onChange={this.handleGramChange}/>
-                        {this.props.meal && meal.get('macros') && <MealMacrosSpecifics
-                            macros={meal.get('macros')}
-                            grams={this.props.meal.get('quantity')}
+                        {this.props.food && food.get('macros') && <MealMacrosSpecifics
+                            macros={food.get('macros')}
+                            grams={this.props.food.get('quantity')}
                         />
                         }
                     </Grid.Column>
@@ -54,7 +54,7 @@ class OfficialMealItem extends PureComponent {
 
 function mapStateToProps(state, ownProps) {
     return {
-        meal: MealSelector(state, ownProps)
+        food: FoodSelector(state, ownProps)
     }
 }
 
@@ -65,4 +65,4 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(OfficialMealItem);
+export default connect(mapStateToProps, mapDispatchToProps)(OfficialFoodItem);

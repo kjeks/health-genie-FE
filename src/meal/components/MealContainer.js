@@ -3,9 +3,9 @@ import React, {PureComponent} from 'react';
 import ListFetchHoC from "../../common/HOC/ListFetchHoC";
 import Summary from "../../common/components/Summary";
 import SelectionList from "./SelectionList";
-import OfficialMealItem from './OfficialMealItem';
+import OfficialMealItem from './OfficialFoodItem';
 import ActivityItem from './ActivityItem';
-import MealSelectionItem from './MealSelectionItem';
+import MealSelectionItem from './FoodSelectionItem';
 import ActivitySelectionItem from './ActivitySelectionItem';
 import AddSaveButtonWrapper from '../../common/HOC/AddSaveButtonWrapper';
 

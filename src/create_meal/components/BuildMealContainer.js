@@ -3,10 +3,12 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Input, Header, Button, Grid} from 'semantic-ui-react';
 import {List} from 'immutable';
-import ChangeableList from '../../common/list/components/ChangeableList';
+import SelectionList from '../../meal/components/SelectionList';
 import ListActions from "../../common/list/ListActions";
 import Actions from "../Actions";
 import Summary from "../../common/components/Summary";
+import OfficialFoodItem from "../../meal/components/OfficialFoodItem";
+import FoodSelectionItem from "../../meal/components/FoodSelectionItem";
 
 class BuildMealContainer extends Component <{
     addItem: (string) => void,
@@ -37,8 +39,10 @@ class BuildMealContainer extends Component <{
                     <Header as={"h1"} className={"centered"}>{`meal`}</Header>
                     <Input label={'name'} fluid value={this.state.name} onChange={this.handleNameChange}/>
                     <Header as={"h3"}>{`list of ingredients`}</Header>
-                    <ChangeableList
-                        type={this.props.type}
+                    <SelectionList
+                        type={'INGREDIENT'}
+                        itemComponentType={OfficialFoodItem}
+                        selectionItemType={FoodSelectionItem}
                     />
                     <Button onClick={this.handleAddItem}>add ingredient</Button>
                     <Button onClick={this.handleCreateMeal}>create meal</Button>
