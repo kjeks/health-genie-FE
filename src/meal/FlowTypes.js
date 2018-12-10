@@ -10,7 +10,8 @@ export type NewDayReducerType = {
 
 export const makeNewDayReducer = Map({
     meals: new Map(),
-    activities: new Map()
+    activities: new Map(),
+    ingredients: new Map()
 });
 
 export const makeMealType = Record({

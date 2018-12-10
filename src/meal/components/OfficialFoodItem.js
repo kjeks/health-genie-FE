@@ -9,7 +9,7 @@ import cx from 'classnames';
 
 class OfficialFoodItem extends PureComponent {
     handleGramChange = (event, target) => {
-        this.props.onGramsChange(this.props.item.get('_id'), target.value)
+        this.props.onGramsChange(this.props.item.get('_id'), target.value, this.props.type)
     };
     handleFavoriteClick = () => {
         this.props.onMealFavoriteToggle(this.props.item.get('_id'));
@@ -60,7 +60,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        onGramsChange: (mealId, newValue) => dispatch(Actions.onGramsChange(mealId, newValue)),
+        onGramsChange: (mealId, newValue, type) => dispatch(Actions.onGramsChange(mealId, newValue, type)) ,
         onMealFavoriteToggle: (mealId) => dispatch(Actions.onMealFavoriteToggle(mealId))
     }
 }

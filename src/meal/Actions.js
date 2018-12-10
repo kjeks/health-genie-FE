@@ -3,9 +3,9 @@ import {makeRequest} from "../common/requestUtil";
 import ListActionTypes, {generateActionType} from "../common/ActionTypes";
 
 export default {
-    onGramsChange(mealId, newValue) {
+    onGramsChange(id, newValue, type) {
         return dispatch => {
-            dispatch({type: ActionTypes.NEW_DAY_GRAMS_CHANGE, id: mealId, newValue: newValue})
+            dispatch({type: generateActionType(type, ListActionTypes.GRAMS_CHANGE), id: id, newValue: newValue})
         }
     },
     onDurationChange(activityId, newValue) {

@@ -7,7 +7,8 @@ export default {
     ITEMS_RECEIVED: 'ITEMS_RECEIVED',
     REQUEST_LIST_SAVE: 'REQUEST_LIST_SAVE',
     LIST_SAVE_SUCCESSFUL: 'LIST_SAVE_SUCCESSFUL',
-    FAVORITE_TOGGLE_RECEIVED: 'FAVORITE_TOGGLE_RECEIVED'
+    FAVORITE_TOGGLE_RECEIVED: 'FAVORITE_TOGGLE_RECEIVED',
+    GRAMS_CHANGE: 'GRAMS_CHANGE'
 }
 export function generateActionType(reducerName, actionType) {
     return `${reducerName}_${actionType}`;

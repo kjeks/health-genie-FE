@@ -6,7 +6,7 @@ import {List} from 'immutable';
 import SelectionList from '../../meal/components/SelectionList';
 import ListActions from "../../common/list/ListActions";
 import Actions from "../Actions";
-import Summary from "../../common/components/Summary";
+import MealCreationSummary from './MealCreationSummary';
 import OfficialFoodItem from "../../meal/components/OfficialFoodItem";
 import FoodSelectionItem from "../../meal/components/FoodSelectionItem";
 
@@ -48,9 +48,9 @@ class BuildMealContainer extends Component <{
                     <Button onClick={this.handleCreateMeal}>create meal</Button>
                 </Grid.Column>
                 <Grid.Column>
-                    <Summary
+                    <MealCreationSummary
+                        type={'INGREDIENT'}
                         tableHeaders={['name', 'planned']}
-                        type={this.props.type}
                     />
                 </Grid.Column>
             </Grid>
