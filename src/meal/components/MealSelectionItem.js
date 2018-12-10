@@ -11,7 +11,7 @@ export default class MealSelectionItem extends PureComponent {
             return <div key={name}>{`${name}: ${value}`}</div>
         });
         return (
-            <List.Item key={listItem.get('name')} onClick={this.onItemSelected}>
+            <List.Item className={'list-item'} key={listItem.get('name')} onClick={this.onItemSelected}>
                 <Header>{listItem.get('name')}</Header>
                 <List.Content>
                     {macros.toList()}

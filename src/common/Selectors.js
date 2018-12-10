@@ -7,6 +7,9 @@ export const itemListSelector = (state, props) => {
 const selectedItemIdsSelector = (state, props) => {
     return state.get(props.type || props).selectedItemIds;
 };
+const favoriteIdsSelector = (state, props) => {
+    return state.get(props.type).favoriteItemIds;
+};
 const quantitySelector = (state, props) => {
     return state.getIn([
         'NewDayReducer',
@@ -31,4 +34,12 @@ export const idAndQuantitySelector = createSelector(
             return [id, quant];
         });
     }
-)
+);
+export const favoriteListSelector = createSelector(
+    favoriteIdsSelector, itemListSelector,
+    (favoriteIds, itemList) => {
+        return favoriteIds.map(id => {
+            return itemList.get(id);
+        })
+    }
+);

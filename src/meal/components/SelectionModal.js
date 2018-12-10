@@ -1,22 +1,30 @@
 import React, {PureComponent} from 'react';
 import {List} from 'semantic-ui-react';
+import SelectSearch from 'react-select-search';
 
 export default class SelectionModal extends PureComponent {
+     renderItems = (options)=> {
+         const SelectionItem = this.props.selectionItemType;
+         return <SelectionItem
+             listItem={options.item}
+             onItemSelected={this.props.onItemSelected}
+             key={options.item.get('_id')}
+         />
+    };
     render() {
-        const SelectionItem = this.props.selectionItemType;
-
-        const list = this.props.list.map(listItem => {
-            return <SelectionItem
-                listItem={listItem}
-                onItemSelected={this.props.onItemSelected}
-                key={listItem.get('_id')}
-            />;
+        const searchOptions = this.props.list.map(listItem => {
+            return {name: listItem.get('name'), value: listItem.get('_id'), item: listItem};
         });
-        return (
-            <List celled horizontal className={'selection-list'}>
-                {list.toList()}
-            </List>
 
+        return (
+            <div>
+                <List celled className={'selection-list'}>
+                    <SelectSearch
+                        options={searchOptions}
+                        renderOption={this.renderItems}
+                    />
+                </List>
+            </div>
         )
     }
 }

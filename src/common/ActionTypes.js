@@ -6,7 +6,8 @@ export default {
     FETCH_ITEMS: 'FETCH_ITEMS',
     ITEMS_RECEIVED: 'ITEMS_RECEIVED',
     REQUEST_LIST_SAVE: 'REQUEST_LIST_SAVE',
-    LIST_SAVE_SUCCESSFUL: 'LIST_SAVE_SUCCESSFUL'
+    LIST_SAVE_SUCCESSFUL: 'LIST_SAVE_SUCCESSFUL',
+    FAVORITE_TOGGLE_RECEIVED: 'FAVORITE_TOGGLE_RECEIVED'
 }
 export function generateActionType(reducerName, actionType) {
     return `${reducerName}_${actionType}`;

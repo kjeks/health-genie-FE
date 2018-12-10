@@ -1,3 +1,4 @@
+@import url("http://weloveiconfonts.com/api/?family=fontawesome");
 .week-schedule-container {
   display: flex; }
   .week-schedule-container .week-schedule-container__summary {
@@ -48,12 +49,7 @@
   .list-item .content {
     flex-direction: column;
     display: flex;
-    padding: 20px; }
-    .list-item .content .list-item__name {
-      font-weight: bolder;
-      padding-bottom: 5px; }
-  .list-item:nth-child(odd) {
-    background-color: whitesmoke; }
+    padding: 10px; }
   .list-item .fa-window-close {
     position: absolute;
     right: 0;
@@ -72,6 +68,53 @@
 .selection-list__item:hover {
   background-color: #61dafb;
   cursor: pointer; }
+
+.selected {
+  color: gold; }
+
+[class*="fontawesome-"]:before {
+  font-family: 'fontawesome', sans-serif; }
+
+ul {
+  padding-inline-start: 0px;
+  list-style-type: none; }
+
+.select-search-box {
+  position: relative; }
+  .select-search-box .select-search-box__search {
+    display: block;
+    width: 100%;
+    height: 50px;
+    border: none;
+    background: none;
+    outline: none;
+    font-size: 16px;
+    padding: 0 20px;
+    color: #222f3e;
+    -webkit-appearance: none;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 2;
+    cursor: pointer;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: 50px;
+    box-shadow: 0 7px 14px 0 rgba(50, 50, 93, 0.1), 0 3px 6px 0 rgba(0, 0, 0, 0.07); }
+  .select-search-box .select-search-box__option {
+    padding: 5px; }
+    .select-search-box .select-search-box__option:nth-child(odd) {
+      background-color: whitesmoke; }
+
+.select-search-box::after {
+  font-family: fontawesome;
+  content: "\f002";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  text-align: center;
+  line-height: 50px;
+  color: #222f3e;
+  z-index: 1; }
 
 .user-container {
   display: flex;

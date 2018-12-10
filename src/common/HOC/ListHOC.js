@@ -2,13 +2,14 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Actions from "../list/ListActions";
-import {selectedItemSelector} from "../Selectors";
+import {favoriteListSelector, selectedItemSelector} from "../Selectors";
 
 export default function (ListComponent) {
     function mapStateToProps (state, ownProps) {
         return {
             selectedItems: selectedItemSelector(state, ownProps),
             itemList: state.get(ownProps.type).itemList,
+            favoriteList: favoriteListSelector(state, ownProps),
             itemSelectionOpen: state.get(ownProps.type).itemSelectionOpen
         }
     }

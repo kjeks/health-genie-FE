@@ -5,12 +5,15 @@ import MealMacros from "./MealMacros";
 import MealMacrosSpecifics from "./MealMacrosSpecifics";
 import {MealSelector} from "../Selector";
 import Actions from "../Actions";
+import cx from 'classnames';
 
 class OfficialMealItem extends PureComponent {
     handleGramChange = (event, target) => {
         this.props.onGramsChange(this.props.item.get('_id'), target.value)
     };
-
+    handleFavoriteClick = () => {
+        this.props.onMealFavoriteToggle(this.props.item.get('_id'));
+    };
     render() {
         const meal = this.props.item;
 
@@ -18,7 +21,10 @@ class OfficialMealItem extends PureComponent {
             <Grid columns={2} celled>
                 <Grid.Row>
                     <Grid.Column width={16} textAlign={'center'}>
-                        <Header as={'h3'}>{meal.get('name')}</Header>
+                        <Header as={'h3'}>
+                            {meal.get('name')}
+                            <i className={cx('fas fa-star', {selected: this.props.isFavorite})} onClick={this.handleFavoriteClick}/>
+                        </Header>
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
@@ -31,7 +37,8 @@ class OfficialMealItem extends PureComponent {
                         }
                     </Grid.Column>
                     <Grid.Column width={12}>
-                        <Input label='select grams' type='number' value={this.props.meal && this.props.meal.get('quantity')}
+                        <Input label='select grams' type='number'
+                               value={this.props.meal && this.props.meal.get('quantity')}
                                onChange={this.handleGramChange}/>
                         {this.props.meal && meal.get('macros') && <MealMacrosSpecifics
                             macros={meal.get('macros')}
@@ -53,7 +60,8 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        onGramsChange: (mealId, newValue) => dispatch(Actions.onGramsChange(mealId, newValue))
+        onGramsChange: (mealId, newValue) => dispatch(Actions.onGramsChange(mealId, newValue)),
+        onMealFavoriteToggle: (mealId) => dispatch(Actions.onMealFavoriteToggle(mealId))
     }
 }
 

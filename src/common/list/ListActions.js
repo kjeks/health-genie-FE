@@ -30,6 +30,7 @@ export default {
                 dispatch({
                     type: generateActionType(listName, ActionTypes.ITEMS_RECEIVED),
                     selectedIds: data.selectedIds,
+                    favoriteItemIds: data.favoriteItemIds,
                     items: data.items
                 });
             })
