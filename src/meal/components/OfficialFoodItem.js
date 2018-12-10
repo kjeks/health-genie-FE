@@ -12,7 +12,7 @@ class OfficialFoodItem extends PureComponent {
         this.props.onGramsChange(this.props.item.get('_id'), target.value, this.props.type)
     };
     handleFavoriteClick = () => {
-        this.props.onMealFavoriteToggle(this.props.item.get('_id'));
+        this.props.onFoodFavoriteToggle(this.props.item.get('_id'), this.props.type);
     };
     render() {
         const food = this.props.item;
@@ -61,7 +61,7 @@ function mapStateToProps(state, ownProps) {
 function mapDispatchToProps(dispatch) {
     return {
         onGramsChange: (mealId, newValue, type) => dispatch(Actions.onGramsChange(mealId, newValue, type)) ,
-        onMealFavoriteToggle: (mealId) => dispatch(Actions.onMealFavoriteToggle(mealId))
+        onFoodFavoriteToggle: (mealId, type) => dispatch(Actions.onFoodFavoriteToggle(mealId, type))
     }
 }
 

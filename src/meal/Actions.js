@@ -1,6 +1,7 @@
 import ActionTypes from "./ActionTypes";
 import {makeRequest} from "../common/requestUtil";
 import ListActionTypes, {generateActionType} from "../common/ActionTypes";
+import {getUrlByListName} from "../common/list/ListUtils";
 
 export default {
     onGramsChange(id, newValue, type) {
@@ -18,11 +19,11 @@ export default {
             dispatch({type: ActionTypes.NEW_DAY_SPEED_CHANGE, id: activityId, newValue: newValue})
         }
     },
-    onMealFavoriteToggle(mealId) {
+    onFoodFavoriteToggle(mealId, type) {
         return dispatch => {
             dispatch({type: ActionTypes.MEAL_FAVORITE_TOGGLE_REQUESTED, mealId: mealId});
-            makeRequest({url:`meals/favorite/${mealId}`, method:'post'}).then((data) => {
-                dispatch({type: generateActionType('MEAL', ListActionTypes.FAVORITE_TOGGLE_RECEIVED), favoriteItemIds: data.favoriteItemIds})
+            makeRequest({url:`${getUrlByListName(type)}/favorite/${mealId}`, method:'post'}).then((data) => {
+                dispatch({type: generateActionType(type, ListActionTypes.FAVORITE_TOGGLE_RECEIVED), favoriteItemIds: data.favoriteItemIds})
             })
         }
     }
