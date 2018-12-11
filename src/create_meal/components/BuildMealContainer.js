@@ -9,6 +9,7 @@ import Actions from "../Actions";
 import MealCreationSummary from './MealCreationSummary';
 import OfficialFoodItem from "../../meal/components/OfficialFoodItem";
 import FoodSelectionItem from "../../meal/components/FoodSelectionItem";
+import {idAndQuantitySelector} from "../../common/Selectors";
 
 class BuildMealContainer extends Component <{
     addItem: (string) => void,
@@ -26,7 +27,7 @@ class BuildMealContainer extends Component <{
         this.props.addItem(this.props.type);
     };
     handleCreateMeal = () => {
-        this.props.createMeal(this.props.ingredientIds, this.state.name)
+        this.props.createMeal(this.props.ingredientQuantities, this.state.name)
     };
     handleNameChange = (event, data) => {
         this.setState({name: data.value})
@@ -60,7 +61,8 @@ class BuildMealContainer extends Component <{
 
 function mapStateToProps(state, ownProps) {
     return {
-        ingredientIds: state.getIn([ownProps.type, 'selectedItemIds'])
+        ingredientIds: state.getIn([ownProps.type, 'selectedItemIds']),
+        ingredientQuantities: idAndQuantitySelector(state, {type: 'INGREDIENT'}),
     }
 }
 
