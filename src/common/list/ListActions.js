@@ -31,6 +31,7 @@ export default {
                     type: generateActionType(listName, ActionTypes.ITEMS_RECEIVED),
                     selectedIds: data.selectedIds,
                     favoriteItemIds: data.favoriteItemIds,
+                    selfMadeItemIds: data.selfMadeItemIds,
                     items: data.items
                 });
             })

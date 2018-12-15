@@ -34,7 +34,22 @@ class SelectionList extends Component {
                 type={this.props.type}
             />
         });
-        const selectionModalList = this.state.selectedList === 'favorites' ? this.props.favoriteList : this.props.itemList;
+        let selectionModalList;
+        switch(this.state.selectedList) {
+            case('favorites'):
+                selectionModalList = this.props.favoriteList;
+                break;
+            case('all'):
+                selectionModalList = this.props.itemList;
+                break;
+            case('user made'):
+                selectionModalList = this.props.userMadeList;
+                break;
+            default:
+                selectionModalList = this.props.itemList;
+                break;
+
+        }
         return (
             <div>
                 <Header as={"h1"} className={"centered"}>{`${this.props.type.toLowerCase()}-list`}</Header>
@@ -52,8 +67,8 @@ class SelectionList extends Component {
                             <Menu.Item onClick={this.menuItemSelected} active={this.state.selectedList==='all'} value={'all'}>
                                 all
                             </Menu.Item>
-                            <Menu.Item onClick={this.menuItemSelected} active={this.state.selectedList==='custom'} value={'custom'}>
-                                custom
+                            <Menu.Item onClick={this.menuItemSelected} active={this.state.selectedList==='user made'} value={'user made'}>
+                                self made
                             </Menu.Item>
                         </Menu>
                         <SelectionModal

@@ -11,11 +11,13 @@ export type ListReducerType = {
     itemList: Map<string, RecordOf<ListItemType>>,
     favoriteItemIds: List<string>,
     selectedItemIds: List<string>,
-    itemSelectionOpen: string | boolean
+    itemSelectionOpen: string | boolean,
+    userCreatedItemIds: List<string>
 }
 export const makeListReducer: RecordFactory<ListReducerType> = Record({
     itemList: Map(),
     favoriteItemIds: List(),
     selectedItemIds: List(),
-    itemSelectionOpen: false
+    itemSelectionOpen: false,
+    userCreatedItemIds: List()
 });

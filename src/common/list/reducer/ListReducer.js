@@ -6,6 +6,7 @@ const initialState = makeListReducer({
     itemList: Map(),
     favoriteItemIds: List(),
     selectedIds: List(),
+    userCreatedItemIds: List(),
     itemSelectionOpen: false
 });
 
@@ -16,7 +17,9 @@ export default (reducerName = '') => (next) => (state = initialState, action) =>
                 delete item['__v'];
                 state = state.setIn(['itemList', item._id], fromJS(item));
             });
-            return state.set('selectedItemIds', List(action.selectedIds)).set('favoriteItemIds', List(action.favoriteItemIds));
+            return state.set('selectedItemIds', List(action.selectedIds))
+                .set('favoriteItemIds', List(action.favoriteItemIds))
+                .set('userCreatedItemIds', List(action.selfMadeItemIds));
 
         case `${reducerName}_${ActionTypes.FAVORITE_TOGGLE_RECEIVED}`:
             return state.set('favoriteItemIds', List(action.favoriteItemIds));

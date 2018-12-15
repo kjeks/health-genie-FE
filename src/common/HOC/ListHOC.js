@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Actions from "../list/ListActions";
-import {favoriteListSelector, selectedItemSelector} from "../Selectors";
+import {favoriteListSelector, selectedItemSelector, userMadeListSelector} from "../Selectors";
 
 export default function (ListComponent) {
     function mapStateToProps (state, ownProps) {
@@ -10,6 +10,7 @@ export default function (ListComponent) {
             selectedItems: selectedItemSelector(state, ownProps),
             itemList: state.get(ownProps.type).itemList,
             favoriteList: favoriteListSelector(state, ownProps),
+            userMadeList: userMadeListSelector(state, ownProps),
             itemSelectionOpen: state.get(ownProps.type).itemSelectionOpen
         }
     }
