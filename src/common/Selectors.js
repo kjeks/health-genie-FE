@@ -2,13 +2,13 @@ import {createSelector} from 'reselect';
 import {getUrlByListName} from "./list/ListUtils";
 
 export const itemListSelector = (state, props) => {
-    return state.get(props.type).itemList;
+    return state.get(props.type || props).itemList;
 };
 const selectedItemIdsSelector = (state, props) => {
     return state.get(props.type || props).selectedItemIds;
 };
 const favoriteIdsSelector = (state, props) => {
-    return state.get(props.type).favoriteItemIds;
+    return state.get(props.type || props).favoriteItemIds;
 };
 const userCreatedIdsSelector = (state, props) => {
     return state.get(props.type).userCreatedItemIds;

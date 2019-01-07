@@ -3,8 +3,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import ListActions from "../../common/list/ListActions";
 import AdminListItem from "./AdminListItem";
+import AdminList from './AdminList';
 import Actions from "../Actions";
 import {Header} from 'semantic-ui-react';
+import {favoriteListSelector, selectedItemSelector, userMadeListSelector} from "../../common/Selectors";
 
 class AdminContainer extends Component <{}> {
     constructor(props) {
@@ -46,7 +48,14 @@ class AdminContainer extends Component <{}> {
                 </div>
                 <div>
                     <Header as='h1' className={"centered"}>Meals</Header>
+                    <AdminList
+                        list={this.props.userMadeMeals}
+
+                    />
                     {meals.toList()}
+                    {/*{selfMadeMeals.toList()}*/}
+                    {/*{favoriteMeals.toList()}*/}
+
                 </div>
 
             </div>
@@ -54,10 +63,12 @@ class AdminContainer extends Component <{}> {
     }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
     return {
         activities: state.get('ACTIVITY').itemList,
-        meals: state.get('MEAL').itemList
+        meals: state.get('MEAL').itemList,
+        favoriteList: favoriteListSelector(state, ownProps),
+        // userMadeList: userMadeListSelector(state, ownProps),
     }
 }
 

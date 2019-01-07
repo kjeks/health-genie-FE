@@ -98,9 +98,6 @@ class UserContainer extends Component <{
                         <Button onClick={this.onUserSaved}>save changes</Button>
                     </Card>
                 </div>
-                <ActivityLog
-                    type={'ACTIVITY'}
-                />
                 <Summary bmi={this.props.bmi} dailyCal={this.props.dailyCal}/>
             </div>
         )
