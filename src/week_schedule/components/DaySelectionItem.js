@@ -19,6 +19,7 @@ export default class DaySelectionItem extends PureComponent <{}> {
     renderActivities = (activities) => {
         return activities.map((activity) => {
             return <ActivitySelectionItem
+                quantity={activity.get('quantity')}
                 listItem={activity.get('activity')}
                 key={activity.getIn(['activity', '_id'])}
 

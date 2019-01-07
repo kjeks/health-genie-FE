@@ -8,7 +8,8 @@ export default class FoodSelectionItem extends PureComponent {
     render () {
         const listItem = this.props.listItem;
         const macros = listItem.get('macros').map((value, name) => {
-            return <div key={name}>{`${name}: ${value}`}</div>
+            const contentValue = this.props.quantity ? this.props.quantity/100 * value: value;
+            return <div key={name}>{`${name}: ${contentValue}`}</div>
         });
         return (
             <List.Item className={'list-item'} key={listItem.get('name')} onClick={this.props.onItemSelected && this.onItemSelected}>

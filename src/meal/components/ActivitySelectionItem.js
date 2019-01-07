@@ -7,13 +7,13 @@ export default class ActivitySelectionItem extends PureComponent <> {
     };
     render () {
         const listItem = this.props.listItem;
-
+        const kcal = this.props.quantity ? this.props.quantity*listItem.get('kcal'): listItem.get('kcal');
         return (
             <List.Item className={'list-item'} key={listItem.get('name')} onClick={this.props.onItemSelected && this.onItemSelected}>
                 <Header>{listItem.get('name')}</Header>
                 <List.Content>
                     {this.props.quantity && <div className={'list-item__quantity'}>{`minutes: ${this.props.quantity}`}</div>}
-                    {`kcal:${listItem.get('kcal')}`}
+                    {`kcal:${kcal}`}
                     </List.Content>
             </List.Item>
         )
