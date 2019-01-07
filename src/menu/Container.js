@@ -8,16 +8,16 @@ export default class MenuContainer extends PureComponent <{}> {
         return (
             <Menu className='navigation'>
                 <Menu.Item
-                    name={'daily'}
+                    name={'week'}
                     href={'./'}
                 >
-                    daily plan
+                    weekly plans
                 </Menu.Item>
                 <Menu.Item
-                    name={'week'}
-                    href={'./week'}
+                    name={'daily'}
+                    href={'./day'}
                 >
-                    weekly plans
+                    daily plan
                 </Menu.Item>
                 <Menu.Item
                     name={'profile'}

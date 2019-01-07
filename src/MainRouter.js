@@ -38,8 +38,8 @@ export default class MainRouter extends PureComponent {
                     <Route exact path='/admin' component={Admin}/>
                     <Route exact path='/Ingredient' component={Ingredient}/>
                     <Route exact path='/build' component={BuildMeal}/>
-                    <Route exact path='/week' component={Week}/>
-                    <Route path="/" component={Meal}/>
+                    <Route exact path='/day' component={Meal}/>
+                    <Route path="/" component={Week}/>
                 </Switch>
             </Router>
         )
