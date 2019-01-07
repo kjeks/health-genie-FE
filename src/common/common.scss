@@ -42,8 +42,18 @@
     }
   }
 }
-
+.selection-list {
+  .fa-window-close {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    cursor: pointer;
+  }
+}
 .selection-list__item {
+  &:nth-child(odd) {
+    background-color: whitesmoke;
+  }
   &:hover {
     background-color: #61dafb;
     cursor: pointer;

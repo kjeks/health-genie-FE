@@ -8,7 +8,8 @@ export default {
     REQUEST_LIST_SAVE: 'REQUEST_LIST_SAVE',
     LIST_SAVE_SUCCESSFUL: 'LIST_SAVE_SUCCESSFUL',
     FAVORITE_TOGGLE_RECEIVED: 'FAVORITE_TOGGLE_RECEIVED',
-    GRAMS_CHANGE: 'GRAMS_CHANGE'
+    GRAMS_CHANGE: 'GRAMS_CHANGE',
+    CLOSE_MODAL: 'CLOSE_MODAL'
 }
 export function generateActionType(reducerName, actionType) {
     return `${reducerName}_${actionType}`;

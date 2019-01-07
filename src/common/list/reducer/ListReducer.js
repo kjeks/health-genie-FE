@@ -23,7 +23,8 @@ export default (reducerName = '') => (next) => (state = initialState, action) =>
 
         case `${reducerName}_${ActionTypes.FAVORITE_TOGGLE_RECEIVED}`:
             return state.set('favoriteItemIds', List(action.favoriteItemIds));
-
+        case `${reducerName}_${ActionTypes.CLOSE_MODAL}`:
+            return state.set('itemSelectionOpen', false);
         default:
             return (next[0])(next.slice(1))(reducerName)(state, action);
     }

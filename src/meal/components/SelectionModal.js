@@ -19,6 +19,7 @@ export default class SelectionModal extends PureComponent {
         return (
             <div>
                 <List celled className={'selection-list'}>
+                    <i className={'fa fa-window-close'} onClick={this.props.onModalClose}/>
                     <SelectSearch
                         options={searchOptions}
                         renderOption={this.renderItems}

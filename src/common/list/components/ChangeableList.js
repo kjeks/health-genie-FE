@@ -12,6 +12,9 @@ class ChangeableList extends PureComponent <{
     handleSelectItem = (id) => {
         this.props.onItemSelected(id, this.props.type);
     };
+    handleModalClose = () => {
+        this.props.onModalClose(this.props.type);
+    };
     render () {
         const items =  this.props.selectedItems.map((item, index) => {
             return item && <ChangeableListItem
@@ -32,6 +35,7 @@ class ChangeableList extends PureComponent <{
                     isOpen={this.props.itemSelectionOpen !==false}
                 >
                     <ListSelection
+                        onModalClose={this.handleModalClose}
                         list={this.props.itemList}
                         onItemSelected={this.handleSelectItem}
                     />

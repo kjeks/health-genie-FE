@@ -15,6 +15,9 @@ class SelectionList extends Component {
     menuItemSelected = (event, data) => {
         this.setState({selectedList: data.value})
     };
+    handleModalClose = () => {
+        this.props.onModalClose(this.props.type)
+    };
 
     render() {
         const Item = this.props.itemComponentType;
@@ -72,6 +75,7 @@ class SelectionList extends Component {
                             </Menu.Item>
                         </Menu>
                         <SelectionModal
+                            onModalClose={this.handleModalClose}
                             list={selectionModalList}
                             onItemSelected={this.handleSelectItem}
                             selectionItemType={this.props.selectionItemType}

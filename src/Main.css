@@ -65,6 +65,14 @@
     .list-item .fa-arrow-right:hover {
       color: green; }
 
+.selection-list .fa-window-close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  cursor: pointer; }
+
+.selection-list__item:nth-child(odd) {
+  background-color: whitesmoke; }
 .selection-list__item:hover {
   background-color: #61dafb;
   cursor: pointer; }

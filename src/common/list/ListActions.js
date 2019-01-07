@@ -13,6 +13,11 @@ export default {
             dispatch({type: generateActionType(listName, ActionTypes.ADD_ITEM)})
         }
     },
+    onModalClose: function (listName) {
+        return dispatch => {
+            dispatch({type: generateActionType(listName, ActionTypes.CLOSE_MODAL)})
+        }
+    },
     onItemSelected: function (id, listName) {
         return dispatch => {
             dispatch({type: generateActionType(listName, ActionTypes.SELECT_ITEM), itemId: id});

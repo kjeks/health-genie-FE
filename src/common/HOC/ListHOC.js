@@ -18,7 +18,8 @@ export default function (ListComponent) {
         return {
             onItemSelected: (id, type) => dispatch(Actions.onItemSelected(id, type)),
             onItemRemove: (index, listName) => dispatch(Actions.onItemRemove(index, listName)),
-            onItemChange: (index, mealId, listName) => dispatch(Actions.onItemChange(index, mealId, listName))
+            onItemChange: (index, mealId, listName) => dispatch(Actions.onItemChange(index, mealId, listName)),
+            onModalClose: (listName) => dispatch(Actions.onModalClose(listName))
         }
     }
     return connect(mapStateToProps, mapDispatchToProps)(PureHOC(ListComponent));

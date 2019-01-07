@@ -18,6 +18,7 @@ export default class ListSelection extends PureComponent<{
         });
         return (
             <div className={'selection-list'}>
+                <i className={'fa fa-window-close'} onClick={this.props.onModalClose}/>
                 {list.toList()}
             </div>
         )
