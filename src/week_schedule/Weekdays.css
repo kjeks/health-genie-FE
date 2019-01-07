@@ -1,4 +1,24 @@
 .week-schedule-container {
   display: flex; }
+  .week-schedule-container .week-schedule-container__summary {
+    display: flex;
+    flex-direction: column; }
+
+.header--clickable {
+  cursor: pointer; }
+  .header--clickable:hover {
+    color: green; }
+
+.day-list-content {
+  flex-direction: row !important; }
+  .day-list-content .day-selection-item {
+    width: 50%;
+    align-items: center;
+    display: flex;
+    flex-direction: column; }
+    .day-list-content .day-selection-item .day-selection-item__content {
+      flex-direction: row;
+      justify-content: space-evenly;
+      width: 100%; }
 
 /*# sourceMappingURL=Weekdays.css.map */

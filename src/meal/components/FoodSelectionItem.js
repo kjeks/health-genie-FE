@@ -1,7 +1,7 @@
 import React, {PureComponent} from 'react';
 import {List, Header} from 'semantic-ui-react';
 
-export default class MealSelectionItem extends PureComponent {
+export default class FoodSelectionItem extends PureComponent {
     onItemSelected = () => {
         this.props.onItemSelected(this.props.listItem.get('_id'))
     };
@@ -11,9 +11,10 @@ export default class MealSelectionItem extends PureComponent {
             return <div key={name}>{`${name}: ${value}`}</div>
         });
         return (
-            <List.Item className={'list-item'} key={listItem.get('name')} onClick={this.onItemSelected}>
+            <List.Item className={'list-item'} key={listItem.get('name')} onClick={this.props.onItemSelected && this.onItemSelected}>
                 <Header>{listItem.get('name')}</Header>
                 <List.Content>
+                    {this.props.quantity && <div className={'list-item__quantity'}>{`grams: ${this.props.quantity}`}</div>}
                     {macros.toList()}
                 </List.Content>
             </List.Item>

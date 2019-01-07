@@ -3,12 +3,13 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Header, Grid} from 'semantic-ui-react';
 import Modal from 'react-modal';
-import ListSelection from "../../common/list/components/ListSelection";
 import ListActions from "../../common/list/ListActions";
 import {dayIdsInWeekSelector, dayPlanIdSelector, dayPlanSelector} from "../Selectors";
 import DayContentList from './DayContentList';
 import Actions from "../Actions";
 import DaySummary from "./DaySummary";
+import SelectionModal from "../../meal/components/SelectionModal";
+import DaySelectionItem from "./DaySelectionItem";
 
 
 class Weekday extends Component<{
@@ -39,6 +40,9 @@ class Weekday extends Component<{
             days.sunday
         ];
         this.props.onItemSelected(id, dayIds)
+    };
+    handleModalClose = () => {
+        this.props.onModalClose('WEEK');
     };
     handlePlanClicked = () => {
         this.props.onDaySelected(this.props.day);
@@ -72,9 +76,11 @@ class Weekday extends Component<{
                 <Modal
                     isOpen={this.props.itemSelectionOpen !==false}
                 >
-                    <ListSelection
+                    <SelectionModal
+                        onModalClose={this.handleModalClose}
                         list={this.props.itemList}
                         onItemSelected={this.handleSelectItem}
+                        selectionItemType={DaySelectionItem}
                     />
                 </Modal>
             </Grid.Column>
@@ -95,7 +101,8 @@ function mapStateToProps (state, ownProps) {
 function mapDispatchToProps (dispatch) {
     return {
         onItemSelected: (id, dayIds) => dispatch(Actions.onDayPicked(id, dayIds)),
-        onDaySelected: (day) => dispatch(Actions.onDaySelected(day))
+        onDaySelected: (day) => dispatch(Actions.onDaySelected(day)),
+        onModalClose: type => dispatch(ListActions.onModalClose(type))
     }
 }
 export default connect(mapStateToProps, mapDispatchToProps)(Weekday)
