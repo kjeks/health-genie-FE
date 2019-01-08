@@ -4,7 +4,10 @@ import {connect} from 'react-redux';
 import {Header, Grid} from 'semantic-ui-react';
 import Modal from 'react-modal';
 import ListActions from "../../common/list/ListActions";
-import {dayIdsInWeekSelector, dayPlanIdSelector, dayPlanSelector} from "../Selectors";
+import {
+    dayIdsInWeekSelector, dayPlanIdSelector, dayPlanActivityIdsSelector, dayPlanSelector,
+    dayPlanMealIdsSelector
+} from "../Selectors";
 import DayContentList from './DayContentList';
 import Actions from "../Actions";
 import DaySummary from "./DaySummary";
@@ -62,7 +65,7 @@ class Weekday extends Component<{
                 {this.state.mealExpanded &&
                 <DayContentList
                     type={'MEAL'}
-                    contentIds={this.props.dayPlan.get('meals')}
+                    contentIds={this.props.dayPlanMealIds}
                     day={this.props.day}
                 />}
 
@@ -70,7 +73,7 @@ class Weekday extends Component<{
                 {this.state.activitiesExpanded &&
                 <DayContentList
                     type={'ACTIVITY'}
-                    contentIds={this.props.dayPlan.get('activities')}
+                    contentIds={this.props.dayPlanActivityIds}
                     day={this.props.day}
                 />}
                 <Modal
@@ -93,6 +96,8 @@ function mapStateToProps (state, ownProps) {
         itemList: state.getIn(['WEEK', 'itemList']),
         dayPlanId: dayPlanIdSelector(state, ownProps),
         dayPlan: dayPlanSelector(state, ownProps),
+        dayPlanActivityIds: dayPlanActivityIdsSelector(state, ownProps),
+        dayPlanMealIds: dayPlanMealIdsSelector(state, ownProps),
         dayIds: dayIdsInWeekSelector(state),
         dayReducer: state.get('DAYS'),
         currentSelectedDay: state.getIn(['DAYS', 'currentSelectedDay'])

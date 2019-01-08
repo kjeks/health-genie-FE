@@ -4,10 +4,7 @@ import {connect} from 'react-redux';
 import {Grid, Header} from 'semantic-ui-react';
 import Actions from "../Actions";
 import ListItem from "../../common/list/components/ListItem";
-import {
-    dayIdsInWeekSelector, dayPlanIdSelector, initialWeekSummarySelector,
-    updatedWeekSummarySelector
-} from "../Selectors";
+import {initialWeekSummarySelector, updatedWeekSummarySelector} from "../Selectors";
 
 class WeekSummary extends Component <{}> {
     render() {

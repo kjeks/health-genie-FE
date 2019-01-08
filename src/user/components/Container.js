@@ -9,8 +9,6 @@ import {Input, Label, Header, Card, Dropdown, Checkbox, Form, Button} from 'sema
 import {DateInput} from 'semantic-ui-calendar-react';
 import moment from 'moment';
 import {ACTIVITY_LEVEL} from "../../constants/ActivityLevels";
-import ButtonedList from '../../common/ButtonedList';
-import ListFetchHoC from "../../common/HOC/ListFetchHoC";
 import type {UserReducerType} from "../FlowTypes";
 
 class UserContainer extends Component <{
@@ -52,7 +50,6 @@ class UserContainer extends Component <{
 
     render() {
         const user = this.props.user;
-        const ActivityLog = ListFetchHoC(ButtonedList);
         return (
             <div className="user-container">
                 <div className='user-data'>

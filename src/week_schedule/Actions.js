@@ -23,13 +23,7 @@ export default {
     },
     fetchContent: function (type, contentIds) {
         return dispatch => {
-            let objectArray = [];
-            contentIds.forEach(content => {
-                const cont = queryString.stringify(content.toJS());
-                objectArray.push(cont);
-            });
-
-            makeRequest({url: `${getUrlByListName(type)}/ids/?${queryString.stringify(objectArray)}`,}).then(content => {
+            makeRequest({url: `${getUrlByListName(type)}/ids/?${queryString.stringify(contentIds.toJS())}`,}).then(content => {
                 dispatch({
                     type: generateActionType(type, ListActionTypes.ITEMS_RECEIVED),
                     selectedItemIds: [],

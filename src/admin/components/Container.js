@@ -6,7 +6,7 @@ import AdminListItem from "./AdminListItem";
 import AdminList from './AdminList';
 import Actions from "../Actions";
 import {Header} from 'semantic-ui-react';
-import {favoriteListSelector, selectedItemSelector, userMadeListSelector} from "../../common/Selectors";
+import {favoriteListSelector, userMadeListSelector} from "../../common/Selectors";
 
 class AdminContainer extends Component <{}> {
     constructor(props) {
@@ -68,7 +68,7 @@ function mapStateToProps(state, ownProps) {
         activities: state.get('ACTIVITY').itemList,
         meals: state.get('MEAL').itemList,
         favoriteList: favoriteListSelector(state, ownProps),
-        // userMadeList: userMadeListSelector(state, ownProps),
+        userMadeList: userMadeListSelector(state, ownProps),
     }
 }
 

@@ -34,6 +34,22 @@ export const dayPlanSelector =  createSelector(
         });
     }
 );
+export const dayPlanActivityIdsSelector = createSelector(
+    dayPlanSelector,
+    dayPlan => {
+        return dayPlan.get('activities').map(activity => {
+            return activity.getIn(['activity', '_id']);
+        });
+    }
+);
+export const dayPlanMealIdsSelector = createSelector(
+  dayPlanSelector,
+  dayPlan => {
+      return dayPlan.get('meals').map(activity => {
+          return activity.getIn(['meal', '_id']);
+      });
+  }
+);
 export const typeSelector = (state, props)=> {
     return props.type;
 };
@@ -46,7 +62,7 @@ export const contentSelector = createSelector(
 
         if(type === 'MEAL') {
             return contentItem.map(mealIdAndQuantity => {
-                const mealId = mealIdAndQuantity.get('_id');
+                const mealId = mealIdAndQuantity.getIn(['meal', '_id']);
                 const meal = itemList.get(mealId);
 
                 return meal && Map({
@@ -61,7 +77,7 @@ export const contentSelector = createSelector(
         }
         if(type === 'ACTIVITY') {
             return contentItem.map(activityIdAndDuration => {
-                const activityId = activityIdAndDuration.get('_id');
+                const activityId = activityIdAndDuration.getIn(['activity', '_id']);
                 const activity = itemList.get(activityId);
 
                 return activity && Map({
