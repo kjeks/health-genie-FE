@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list id="cdfd3cd5-7223-4d6e-a7b2-70b96b3b3a55" name="workspace" comment="" />
     <list default="true" id="07b04ff0-a214-4a48-8e14-f908e4248d3e" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/git" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change beforePath="$PROJECT_DIR$/.idea/health-genie-frontend.iml" afterPath="" />
       <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterPath="" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
@@ -383,7 +381,7 @@
       <workItem from="1546531085728" duration="1520000" />
       <workItem from="1546840892569" duration="11304000" />
       <workItem from="1546926814420" duration="13337000" />
-      <workItem from="1547101263328" duration="13070000" />
+      <workItem from="1547101263328" duration="13094000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit of somewhat working app">
       <created>1541414763134</created>
@@ -609,11 +607,18 @@
       <option name="project" value="LOCAL" />
       <updated>1547119458147</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="remove files that should be ignored">
+      <created>1547122250790</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1547122250790</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="142915000" />
+    <option name="totallyTimeSpent" value="142939000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -656,7 +661,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix the calculated macros" />
     <MESSAGE value="Fix the summary on days" />
     <MESSAGE value="Fix issues with the daily plans" />
     <MESSAGE value="Fix the weekly activities" />
@@ -681,7 +685,8 @@
     <MESSAGE value="Use ordered maps for the Lists to enable sorting" />
     <MESSAGE value="Add admin buttons for cleaning up lists" />
     <MESSAGE value="Add support for more than one word in search" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add support for more than one word in search" />
+    <MESSAGE value="remove files that should be ignored" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove files that should be ignored" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
