@@ -27,7 +27,7 @@ export default class SelectionModal extends Component {
         }
         return <VirtualizedList
             rowRenderer={rowRenderer}
-            rowHeight={170}
+            rowHeight={this.props.rowHeight || 170}
             rowCount={items.size}
             height={650}
             width={1000}

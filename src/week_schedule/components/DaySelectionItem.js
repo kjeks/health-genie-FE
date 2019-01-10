@@ -18,11 +18,10 @@ export default class DaySelectionItem extends PureComponent <{}> {
     };
     renderActivities = (activities) => {
         return activities.map((activity) => {
-            return <ActivitySelectionItem
+            return activity && <ActivitySelectionItem
                 quantity={activity.get('quantity')}
                 listItem={activity.get('activity')}
                 key={activity.getIn(['activity', '_id'])}
-
             />
         });
     };
@@ -30,7 +29,6 @@ export default class DaySelectionItem extends PureComponent <{}> {
         const dayItem = this.props.listItem;
         const meals = this.renderMeals(dayItem.get('meals'));
         const activities = this.renderActivities(dayItem.get('activities'));
-
         return (
             <List.Item className={'list-item'} key={dayItem.get('name')} onClick={this.onItemSelected}>
                 <Header>{dayItem.get('name')}</Header>

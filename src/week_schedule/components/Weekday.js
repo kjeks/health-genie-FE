@@ -84,6 +84,7 @@ class Weekday extends Component<{
                         list={this.props.itemList}
                         onItemSelected={this.handleSelectItem}
                         selectionItemType={DaySelectionItem}
+                        rowHeight={300}
                     />
                 </Modal>
             </Grid.Column>
