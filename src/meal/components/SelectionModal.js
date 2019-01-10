@@ -21,7 +21,7 @@ export default class SelectionModal extends Component {
 
     renderMenu = (items, value, style) => {
         const rowRenderer = ({key, index, parent, style}) => {
-            return <div className={'virtualized-list-item'} style={style}>
+            return <div className={'virtualized-list-item'} key={key} style={style}>
                 {items.get(index)}
             </div>
         }
@@ -45,6 +45,7 @@ export default class SelectionModal extends Component {
                 renderItem={this.renderItem}
                 renderMenu={this.renderMenu}
                 shouldItemRender={this.shouldItemRender}
+                getItemValue={item => item.get('name')}
                 value={this.state.search}
                 open={true}
                 onChange={(e, value) => this.setState({search: value})}
