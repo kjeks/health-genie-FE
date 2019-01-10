@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {List} from 'semantic-ui-react';
-import SelectSearch from 'react-select-search';
 import Autocomplete from 'react-autocomplete';
 import {List as VirtualizedList} from 'react-virtualized'
 
@@ -12,31 +10,6 @@ export default class SelectionModal extends Component {
 
     }
 
-    // renderItems = (options) => {
-    //     const SelectionItem = this.props.selectionItemType;
-    //     return  <SelectionItem
-    //         listItem={options.item}
-    //         onItemSelected={this.props.onItemSelected}
-    //         key={options.item.get('_id')}
-    //     />
-    // };
-    //
-    // render() {
-    //     const searchOptions = this.props.list.map((listItem) => {
-    //         return {name: listItem.get('name'), value: listItem.get('_id'), item: listItem};
-    //
-    //     });
-    //
-    //     return (
-    //         <List celled className={'selection-list'}>
-    //             <i className={'fa fa-window-close'} onClick={this.props.onModalClose}/>
-    //                 <SelectSearch
-    //                     options={searchOptions}
-    //                     renderOption={this.renderItems}
-    //                 />
-    //         </List>
-    //     )
-    // }
     renderItem = (item) => {
         const SelectionItem = this.props.selectionItemType;
         return <SelectionItem
@@ -49,36 +22,35 @@ export default class SelectionModal extends Component {
     renderMenu = (items, value, style) => {
         const rowRenderer = ({key, index, parent, style}) => {
             return <div className={'virtualized-list-item'} style={style}>
-                    {items.get(index)}
-                </div>
+                {items.get(index)}
+            </div>
         }
         return <VirtualizedList
-                rowRenderer={rowRenderer}
-                rowHeight={200}
-                rowCount={items.size}
-                height={700}
-                width={1000}
-                style={{
-                    height: 'auto',
-                    maxHeight: 700
-                }}
-            />
+            rowRenderer={rowRenderer}
+            rowHeight={170}
+            rowCount={items.size}
+            height={650}
+            width={1000}
+        />
     };
     shouldItemRender = item => {
         return item.get('name').toLowerCase().includes(this.state.search.toLowerCase());
     };
 
     render() {
-        return <Autocomplete
-            items={this.props.list.toList()}
-            renderItem={this.renderItem}
-            renderMenu={this.renderMenu}
-            shouldItemRender={this.shouldItemRender}
-            value={this.state.search}
-            open={true}
-            onChange={(e, value) => this.setState({search: value})}
-        >
-        </Autocomplete>
+        return <div className={'selection-list'}>
+            <i className={'fa fa-window-close'} onClick={this.props.onModalClose}/>
+            <Autocomplete
+                items={this.props.list.toList()}
+                renderItem={this.renderItem}
+                renderMenu={this.renderMenu}
+                shouldItemRender={this.shouldItemRender}
+                value={this.state.search}
+                open={true}
+                onChange={(e, value) => this.setState({search: value})}
+            >
+            </Autocomplete>
+        </div>
 
     }
 }
