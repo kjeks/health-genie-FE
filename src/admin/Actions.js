@@ -21,5 +21,19 @@ export default {
 
             })
         }
+    },
+    onRemoveBrokenIngredients: function () {
+        return dispatch => {
+            dispatch({type: ActionTypes.ADMIN_REQUEST_DEAD_INGREDIENTS});
+            makeRequest({url: 'admin/ingredients/clean'})
+
+        }
+    },
+    onRemoveBrokenMeals: function () {
+        return dispatch => {
+            dispatch({type: ActionTypes.ADMIN_REQUEST_DEAD_MEALS});
+            makeRequest({url: 'admin/meals/clean'})
+
+        }
     }
 }

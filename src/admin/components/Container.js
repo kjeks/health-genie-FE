@@ -5,7 +5,7 @@ import ListActions from "../../common/list/ListActions";
 import AdminListItem from "./AdminListItem";
 import AdminList from './AdminList';
 import Actions from "../Actions";
-import {Header} from 'semantic-ui-react';
+import {Header, Button} from 'semantic-ui-react';
 import {favoriteListSelector, userMadeListSelector} from "../../common/Selectors";
 
 class AdminContainer extends Component <{}> {
@@ -42,21 +42,27 @@ class AdminContainer extends Component <{}> {
 
         return (
             <div className='admin-container'>
-                <div>
-                    <Header as='h1' className={"centered"}>Activities</Header>
-                    {activities.toList()}
-                </div>
-                <div>
-                    <Header as='h1' className={"centered"}>Meals</Header>
-                    <AdminList
-                        list={this.props.userMadeMeals}
+                <Button onClick={this.props.onRemoveBrokenIngredients}>
+                    Remove dead ingredients
+                </Button>
+                <Button onClick={this.props.onRemoveBrokenMeals}>
+                    Remove dead meals
+                </Button>
+                {/*<div>*/}
+                    {/*<Header as='h1' className={"centered"}>Activities</Header>*/}
+                    {/*{activities.toList()}*/}
+                {/*</div>*/}
+                {/*<div>*/}
+                    {/*<Header as='h1' className={"centered"}>Meals</Header>*/}
+                    {/*<AdminList*/}
+                        {/*list={this.props.userMadeMeals}*/}
 
-                    />
-                    {meals.toList()}
-                    {/*{selfMadeMeals.toList()}*/}
-                    {/*{favoriteMeals.toList()}*/}
+                    {/*/>*/}
+                    {/*{meals.toList()}*/}
+                    {/*/!*{selfMadeMeals.toList()}*!/*/}
+                    {/*/!*{favoriteMeals.toList()}*!/*/}
 
-                </div>
+                {/*</div>*/}
 
             </div>
         )
@@ -67,8 +73,8 @@ function mapStateToProps(state, ownProps) {
     return {
         activities: state.get('ACTIVITY').itemList,
         meals: state.get('MEAL').itemList,
-        favoriteList: favoriteListSelector(state, ownProps),
-        userMadeList: userMadeListSelector(state, ownProps),
+        // favoriteList: favoriteListSelector(state, ownProps),
+        // userMadeList: userMadeListSelector(state, ownProps),
     }
 }
 
@@ -76,7 +82,9 @@ function mapDispatchToProps(dispatch) {
     return {
         fetchList: (listName) => dispatch(ListActions.fetchList(listName)),
         onUpdate: (id, name, type, kcal) => dispatch(Actions.onUpdate(id, name, type, kcal)),
-        onDelete: (id, type) => dispatch(Actions.onDelete(id, type))
+        onDelete: (id, type) => dispatch(Actions.onDelete(id, type)),
+        onRemoveBrokenIngredients: () => dispatch(Actions.onRemoveBrokenIngredients()),
+        onRemoveBrokenMeals: ()=> dispatch(Actions.onRemoveBrokenMeals())
     }
 }
 
