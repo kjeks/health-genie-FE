@@ -7,7 +7,6 @@ export default class SelectionModal extends Component {
     constructor(props) {
         super(props);
         this.state = {search: ''}
-
     }
 
     renderItem = (item) => {
@@ -34,7 +33,16 @@ export default class SelectionModal extends Component {
         />
     };
     shouldItemRender = item => {
-        return item.get('name').toLowerCase().includes(this.state.search.toLowerCase());
+        const searchStrings = this.state.search.split(" ");
+        let hasAllWords = true;
+
+        for(let searchWord of searchStrings) {
+            if(!item.get('name').toLowerCase().includes(searchWord.toLowerCase())) {
+                hasAllWords = false;
+                break;
+            }
+        }
+        return hasAllWords;
     };
 
     render() {

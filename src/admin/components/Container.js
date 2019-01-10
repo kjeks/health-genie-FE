@@ -2,11 +2,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import ListActions from "../../common/list/ListActions";
-import AdminListItem from "./AdminListItem";
-import AdminList from './AdminList';
 import Actions from "../Actions";
-import {Header, Button} from 'semantic-ui-react';
-import {favoriteListSelector, userMadeListSelector} from "../../common/Selectors";
+import {Button} from 'semantic-ui-react';
 
 class AdminContainer extends Component <{}> {
     constructor(props) {
@@ -17,28 +14,28 @@ class AdminContainer extends Component <{}> {
 
 
     render() {
-        const activities = this.props.activities.map((activity) => {
-            return <AdminListItem
-                name={activity.name}
-                kcal={activity.kcal}
-                id={activity._id}
-                key={activity._id}
-                onUpdate={this.props.onUpdate}
-                onDelete={this.props.onDelete}
-                type={"activity"}
-            />
-        });
-        const meals = this.props.meals.map((meal) => {
-            return <AdminListItem
-                name={meal.name}
-                kcal={meal.kcal}
-                id={meal._id}
-                key={meal._id}
-                onUpdate={this.props.onUpdate}
-                onDelete={this.props.onDelete}
-                type={"meal"}
-            />
-        });
+        // const activities = this.props.activities.map((activity) => {
+        //     return <AdminListItem
+        //         name={activity.name}
+        //         kcal={activity.kcal}
+        //         id={activity._id}
+        //         key={activity._id}
+        //         onUpdate={this.props.onUpdate}
+        //         onDelete={this.props.onDelete}
+        //         type={"activity"}
+        //     />
+        // });
+        // const meals = this.props.meals.map((meal) => {
+        //     return <AdminListItem
+        //         name={meal.name}
+        //         kcal={meal.kcal}
+        //         id={meal._id}
+        //         key={meal._id}
+        //         onUpdate={this.props.onUpdate}
+        //         onDelete={this.props.onDelete}
+        //         type={"meal"}
+        //     />
+        // });
 
         return (
             <div className='admin-container'>
