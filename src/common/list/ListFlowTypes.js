@@ -1,5 +1,5 @@
 import type {RecordFactory, RecordOf} from 'immutable';
-import {Record, List, Map} from 'immutable';
+import {Record, List,OrderedMap} from 'immutable';
 
 export type ListItemType = {
     name: string,
@@ -8,14 +8,14 @@ export type ListItemType = {
 }
 
 export type ListReducerType = {
-    itemList: Map<string, RecordOf<ListItemType>>,
+    itemList: OrderedMap<string, RecordOf<ListItemType>>,
     favoriteItemIds: List<string>,
     selectedItemIds: List<string>,
     itemSelectionOpen: string | boolean,
     userCreatedItemIds: List<string>
 }
 export const makeListReducer: RecordFactory<ListReducerType> = Record({
-    itemList: Map(),
+    itemList: OrderedMap(),
     favoriteItemIds: List(),
     selectedItemIds: List(),
     itemSelectionOpen: false,

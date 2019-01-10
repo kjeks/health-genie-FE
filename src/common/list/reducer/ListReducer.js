@@ -1,9 +1,9 @@
 import ActionTypes from "../../ActionTypes";
 import {makeListReducer} from "../ListFlowTypes";
-import {List, Map, fromJS} from "immutable";
+import {List,OrderedMap, fromJS} from "immutable";
 
 const initialState = makeListReducer({
-    itemList: Map(),
+    itemList: OrderedMap(),
     favoriteItemIds: List(),
     selectedIds: List(),
     userCreatedItemIds: List(),
